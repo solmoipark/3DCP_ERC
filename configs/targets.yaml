@@ -1,0 +1,197 @@
+# Target definitions. One entry per model target.
+#   quantities      : measurement.quantity values pooled into this target
+#   units           : accepted unit_canonical -> factor to the canonical unit (others dropped)
+#   unit            : canonical unit label
+#   value_kinds     : accepted measurements.value_kind
+#   bounds          : plausible [min, max] after conversion (rows outside are dropped)
+#   abs_value       : take |value| (shrinkage sign convention varies per paper)
+#   requires_age    : drop rows without age_norm_d
+#   covariates      : per-observation covariates appended to the mix features
+#   exclude_comparability : tests.comparability_group values to drop
+#   basis_in        : accepted measurements.basis (heat of hydration); unit_implies_basis maps a unit to a basis
+#   transform       : log | log1p | none   (model target transform)
+#   min_papers      : minimum distinct papers to train a model
+#   tier            : 1 = primary, 2 = secondary
+defaults:
+  value_kinds: [reported, author_calculated]
+  requires_age: false
+  covariates: []
+  transform: none
+  min_papers: 20
+  tier: 2
+
+targets:
+  compressive_strength:
+    tier: 1
+    quantities: [compressive_strength]
+    unit: MPa
+    units: {MPa: 1.0}
+    bounds: [0.1, 250]
+    requires_age: true
+    covariates: [age_d, comparability_group]
+    exclude_comparability: [emod_static, flex_3pt, flex_4pt, direct_tension]
+    transform: log
+    min_papers: 30
+  flexural_strength:
+    tier: 1
+    quantities: [flexural_strength]
+    unit: MPa
+    units: {MPa: 1.0}
+    bounds: [0.05, 60]
+    requires_age: true
+    covariates: [age_d, comparability_group]
+    transform: log
+  flow_table_spread:
+    tier: 1
+    quantities: [flow_table_spread]
+    unit: mm
+    units: {mm: 1.0, cm: 10.0}
+    bounds: [50, 400]
+    transform: none
+  mini_slump_flow_diameter:
+    tier: 1
+    quantities: [mini_slump_flow_diameter, slump_flow_diameter]
+    unit: mm
+    units: {mm: 1.0, cm: 10.0}
+    bounds: [40, 400]
+    transform: none
+  initial_setting_time:
+    tier: 1
+    quantities: [initial_setting_time]
+    unit: min
+    units: {min: 1.0, h: 60.0, hour: 60.0, hours: 60.0, s: 0.016667}
+    bounds: [1, 3000]
+    transform: log
+  final_setting_time:
+    tier: 1
+    quantities: [final_setting_time]
+    unit: min
+    units: {min: 1.0, h: 60.0, hour: 60.0, hours: 60.0, s: 0.016667}
+    bounds: [2, 5000]
+    transform: log
+  porosity_total:
+    tier: 1
+    quantities: [porosity_total]
+    unit: "%"
+    units: {"%": 1.0, pct: 1.0, fraction: 100.0}
+    bounds: [0.5, 80]
+    covariates: [age_d]
+    transform: none
+  # Rheometer protocol covariates are available via `covariates: [test_protocol]` (tp_* columns from
+  # test_protocols + tp_geometry / tp_method). Tested 2026-09-09 on the four rheology targets: no
+  # out-of-fold gain under GroupKFold (protocol is confounded with paper identity) -> left off by default.
+  dynamic_yield_stress:
+    tier: 1
+    quantities: [dynamic_yield_stress, herschel_bulkley_tau0]
+    unit: Pa
+    units: {Pa: 1.0, kPa: 1000.0}
+    bounds: [0.1, 50000]
+    transform: log
+  plastic_viscosity:
+    tier: 1
+    quantities: [plastic_viscosity]
+    unit: Pa.s
+    units: {Pa.s: 1.0, "Pa·s": 1.0, mPa.s: 0.001, cP: 0.001}
+    bounds: [0.01, 5000]
+    transform: log
+  static_yield_stress:
+    tier: 1
+    quantities: [static_yield_stress]
+    unit: Pa
+    units: {Pa: 1.0, kPa: 1000.0}
+    bounds: [0.1, 200000]
+    covariates: [rest_time_s]
+    transform: log
+  structuration_rate_athix:
+    tier: 1
+    quantities: [structuration_rate_athix]
+    unit: Pa/s
+    units: {Pa/s: 1.0, Pa/min: 0.016667}
+    bounds: [0.0005, 200]
+    transform: log
+    min_papers: 10
+  water_absorption:
+    quantities: [water_absorption]
+    unit: "%"
+    units: {"%": 1.0, pct: 1.0}
+    bounds: [0.1, 60]
+    covariates: [age_d]
+    transform: none
+  drying_shrinkage:
+    quantities: [drying_shrinkage]
+    unit: microstrain
+    units: {microstrain: 1.0, um/m: 1.0, ue: 1.0, "µm/m": 1.0, mm/m: 1000.0, "%": 10000.0}
+    abs_value: true
+    bounds: [1, 20000]
+    requires_age: true
+    covariates: [age_d]
+    transform: log1p
+  autogenous_shrinkage:
+    quantities: [autogenous_shrinkage]
+    unit: microstrain
+    units: {microstrain: 1.0, um/m: 1.0, ue: 1.0, "µm/m": 1.0, mm/m: 1000.0, "%": 10000.0}
+    abs_value: true
+    bounds: [1, 20000]
+    requires_age: true
+    covariates: [age_d]
+    transform: log1p
+  cumulative_heat:
+    quantities: [cumulative_heat]
+    unit: J/g binder
+    units: {"J/g": 1.0, "J/g binder": 1.0, "J/g cementitious": 1.0, "J/g cementitious material": 1.0}
+    basis_in: [per_g_binder]
+    unit_implies_basis: {"J/g binder": per_g_binder, "J/g cementitious": per_g_binder, "J/g cementitious material": per_g_binder}
+    bounds: [5, 700]
+    requires_age: true
+    covariates: [age_d]
+    transform: none
+  elastic_modulus:
+    quantities: [elastic_modulus]
+    unit: GPa
+    units: {GPa: 1.0, MPa: 0.001}
+    bounds: [0.5, 80]
+    requires_age: true
+    covariates: [age_d]
+    transform: log
+  splitting_tensile_strength:
+    quantities: [splitting_tensile_strength]
+    unit: MPa
+    units: {MPa: 1.0}
+    bounds: [0.05, 30]
+    requires_age: true
+    covariates: [age_d]
+    transform: log
+  direct_tensile_strength:
+    quantities: [direct_tensile_strength]
+    unit: MPa
+    units: {MPa: 1.0}
+    bounds: [0.05, 40]
+    requires_age: true
+    covariates: [age_d]
+    transform: log
+  hardened_density:
+    quantities: [hardened_density]
+    unit: kg/m3
+    units: {kg/m3: 1.0, g/mL: 1000.0, g/cm3: 1000.0}
+    bounds: [500, 3200]
+    covariates: [age_d]
+    transform: none
+
+# extend dynamic_yield_stress / plastic_viscosity with Bingham parameters fitted to digitised flow curves
+# (pmpredict/curves.py) for mixes without a tabulated value; validated against tabulated values
+# (Spearman 0.88 / 0.97, |bias| < 0.05 log10). Adds ~90-100 rows / 16 papers each.
+curve_augment_rheology: true
+# read strength-vs-age / shrinkage-vs-time curves at the age grid for mixes lacking tabulated values (redig03)
+curve_augment_age_series: true
+# curve_type LIKE patterns excluded from the age-series augmentation (redig04 grouped-bar readings are
+# '%_vs_age_bars'). A/B 2026-09-10 (GroupKFold R²log/Spearman on tabulated rows): bars help compressive strength
+# (0.653 → 0.670 Spearman, R²log flat) but hurt flexural (R²log 0.238 → 0.167) and both shrinkage targets
+# (drying Spearman 0.706 → 0.657) → exclude by default, allow only for the targets listed in age_series_bars_targets.
+age_series_exclude_curve_types: ['%_vs_age_bars']
+age_series_bars_targets: [compressive_strength]
+# standard age grid (days) used for age binning (log-space snap within 10 %)
+age_grid: [0.042, 0.125, 0.25, 0.5, 1, 2, 3, 7, 14, 21, 28, 56, 90, 180, 365]
+# condition_note handling
+condition_drop_regex: "predict|model[- ]?(ed|based)|\\brsm\\b|equation|fitted|simulat|extrapolat"
+condition_replicate_regex: "^(replicate|specimen \\d|sample \\d|rep\\.? ?\\d|batch \\d|n ?= ?\\d|companion)"
+condition_conflict_rel: 0.15

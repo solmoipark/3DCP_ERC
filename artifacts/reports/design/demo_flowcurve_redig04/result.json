@@ -1,0 +1,3287 @@
+{
+ "spec": {
+  "name": "printable_mortar_flowcurve",
+  "targets": [
+   {
+    "quantity": "compressive_strength",
+    "kind": "ge",
+    "lo": 35.0,
+    "hi": null,
+    "goal": null,
+    "unit": null,
+    "weight": 1.0,
+    "conditions": {
+     "age_d": 28,
+     "comparability_group": "comp_cube50",
+     "rest_time_s": null,
+     "curing_temp_C": null,
+     "curing_rh_pct": null,
+     "shear_rate_1s": null
+    },
+    "p_min": 0.6,
+    "retrieval_only": false
+   },
+   {
+    "quantity": "shear_stress_at_rate",
+    "kind": "range",
+    "lo": 200.0,
+    "hi": 800.0,
+    "goal": null,
+    "unit": null,
+    "weight": 1.0,
+    "conditions": {
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": null,
+     "curing_temp_C": null,
+     "curing_rh_pct": null,
+     "shear_rate_1s": 50
+    },
+    "p_min": 0.3,
+    "retrieval_only": false
+   },
+   {
+    "quantity": "shear_stress_at_rate",
+    "kind": "le",
+    "lo": null,
+    "hi": 2000.0,
+    "goal": null,
+    "unit": null,
+    "weight": 1.0,
+    "conditions": {
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": null,
+     "curing_temp_C": null,
+     "curing_rh_pct": null,
+     "shear_rate_1s": 150
+    },
+    "p_min": 0.3,
+    "retrieval_only": false
+   },
+   {
+    "quantity": "static_yield_stress_at_rest",
+    "kind": "ge",
+    "lo": 1500.0,
+    "hi": null,
+    "goal": null,
+    "unit": null,
+    "weight": 1.0,
+    "conditions": {
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": 1200,
+     "curing_temp_C": null,
+     "curing_rh_pct": null,
+     "shear_rate_1s": null
+    },
+    "p_min": 0.3,
+    "retrieval_only": false
+   }
+  ],
+  "space": {
+   "system_type": "mortar",
+   "is_3dcp": true,
+   "w_b": [
+    0.28,
+    0.45
+   ],
+   "s_b": [
+    0.8,
+    1.8
+   ],
+   "binder": {
+    "portland_cement": {
+     "lo": 0.5,
+     "hi": 1.0,
+     "required": true,
+     "log": false
+    },
+    "silica_fume": {
+     "lo": 0.0,
+     "hi": 0.15,
+     "required": false,
+     "log": false
+    },
+    "limestone_powder": {
+     "lo": 0.0,
+     "hi": 0.3,
+     "required": false,
+     "log": false
+    },
+    "fly_ash_class_F": {
+     "lo": 0.0,
+     "hi": 0.4,
+     "required": false,
+     "log": false
+    }
+   },
+   "max_binder_components": 3,
+   "min_present_frac": 0.02,
+   "admixtures": {
+    "superplasticiser_pce": {
+     "lo": 0.1,
+     "hi": 1.5,
+     "required": false,
+     "log": false
+    },
+    "vma_cellulose": {
+     "lo": 0.0,
+     "hi": 0.3,
+     "required": false,
+     "log": false
+    }
+   },
+   "fibres": {},
+   "fixed_conditions": {
+    "curing_temp_C": 20,
+    "curing_rh_pct": 95,
+    "curing_regime": "moist curing"
+   }
+  },
+  "objectives": [
+   {
+    "name": "clinker_fraction",
+    "direction": "min",
+    "weight": 1.0,
+    "table": null
+   }
+  ],
+  "risk": {
+   "quantile": 0.1,
+   "p_min": 0.6,
+   "ad_max": 1.0,
+   "combine": "product"
+  },
+  "budget": {
+   "n_samples": 8192,
+   "n_refine": 6,
+   "refine_generations": 12,
+   "time_limit_s": 120
+  },
+  "optimizer": "twostage",
+  "output": {
+   "top_n": 8,
+   "n_literature": 12,
+   "plots": true
+  },
+  "seed": 0
+ },
+ "created": "2026-09-10T04:07:39+00:00",
+ "package_version": "0.1.0",
+ "models": {
+  "compressive_strength": {
+   "key": "compressive_strength",
+   "unit": "MPa",
+   "n_train": 44383,
+   "n_papers": 1325,
+   "r2": 0.5134027546929244,
+   "r2_log": 0.4221365099605915,
+   "spearman": 0.6878322618421783,
+   "coverage80": 0.7999909875402744,
+   "weak": false
+  },
+  "shear_stress_at_rate@50/s": {
+   "key": "derived(dynamic_yield_stress + plastic_viscosity)",
+   "unit": "Pa",
+   "n_train": 1241,
+   "n_papers": 157,
+   "r2": null,
+   "r2_log": 0.15958529528343945,
+   "spearman": 0.38593799601307577,
+   "coverage80": 0.7993553585817889,
+   "weak": false
+  },
+  "shear_stress_at_rate@150/s": {
+   "key": "derived(dynamic_yield_stress + plastic_viscosity)",
+   "unit": "Pa",
+   "n_train": 1241,
+   "n_papers": 157,
+   "r2": null,
+   "r2_log": 0.15958529528343945,
+   "spearman": 0.38593799601307577,
+   "coverage80": 0.7993553585817889,
+   "weak": false
+  },
+  "static_yield_stress_at_rest@1200s": {
+   "key": "derived(static_yield_stress + structuration_rate_athix)",
+   "unit": "Pa",
+   "n_train": 302,
+   "n_papers": 45,
+   "r2": null,
+   "r2_log": 0.141374385365022,
+   "spearman": 0.3937433537189506,
+   "coverage80": 0.7980132450331126,
+   "weak": true
+  }
+ },
+ "tables": {
+  "cost": {
+   "path": "C:\\Users\\User\\3D Printing Concrete Prediction\\configs\\unit_cost_default.yaml",
+   "hash": "c7dba05d5c80",
+   "default": true,
+   "unit": "cost_per_kg"
+  },
+  "co2": {
+   "path": "C:\\Users\\User\\3D Printing Concrete Prediction\\configs\\embodied_carbon_default.yaml",
+   "hash": "c7e6390d1a13",
+   "default": true,
+   "unit": "kgCO2e_per_kg"
+  }
+ },
+ "candidates": [
+  {
+   "rank": 1,
+   "name": "cand_01",
+   "mix": {
+    "system_type": "mortar",
+    "components": [
+     {
+      "material_class": "portland_cement",
+      "amount": 0.5,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     },
+     {
+      "material_class": "limestone_powder",
+      "amount": 0.16358118477242614,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     },
+     {
+      "material_class": "fly_ash_class_F",
+      "amount": 0.336418815227574,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     },
+     {
+      "material_class": "superplasticiser_pce",
+      "amount": 0.011642044398268497,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     },
+     {
+      "material_class": "vma_cellulose",
+      "amount": 0.0006875997633525376,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     }
+    ],
+    "water_binder": 0.3553305726010621,
+    "sand_binder": 1.4086925463000344,
+    "conditions": {
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": null,
+     "curing_temp_C": 20,
+     "curing_rh_pct": 95,
+     "curing_regime": "moist curing",
+     "is_3dcp": 1,
+     "mix_time_s": null,
+     "max_rpm": null,
+     "mixer_type": null,
+     "rheometer_geometry": null,
+     "rheometer_method": null,
+     "rheometer": {}
+    },
+    "basis": "mass_frac_of_powder",
+    "name": "cand_01",
+    "year": null,
+    "schema_version": "1.0"
+   },
+   "z": [
+    0.006123293666261909,
+    0.9622779880343066,
+    0.651775374136425,
+    0.9209256067401882,
+    0.38471928145736456,
+    0.8412813507020473,
+    0.9706818656995893,
+    0.4431210153003652,
+    0.6086925463000344,
+    0.8187913903966546,
+    0.6345059908926487,
+    0.9064171193991095,
+    0.5668699951820753
+   ],
+   "predictions": {
+    "compressive_strength": {
+     "quantity": "compressive_strength",
+     "unit": "MPa",
+     "q10": 25.461480851529164,
+     "q50": 44.25965699827895,
+     "q90": 70.67006715810773,
+     "p_satisfied": 0.7360680572909841,
+     "ad_score": 0.5074846063704864,
+     "n_train": 44383,
+     "weak_model": false
+    },
+    "shear_stress_at_rate@50/s": {
+     "quantity": "shear_stress_at_rate@50/s",
+     "unit": "Pa",
+     "q10": 66.61600172146436,
+     "q50": 463.7647627655522,
+     "q90": 1586.7484159671337,
+     "p_satisfied": 0.45205767391299245,
+     "ad_score": 0.47709109485797574,
+     "n_train": 1241,
+     "weak_model": false
+    },
+    "shear_stress_at_rate@150/s": {
+     "quantity": "shear_stress_at_rate@150/s",
+     "unit": "Pa",
+     "q10": 138.72521409999115,
+     "q50": 885.9568075040835,
+     "q90": 4337.194714623073,
+     "p_satisfied": 0.6604453056668862,
+     "ad_score": 0.47709109485797574,
+     "n_train": 1241,
+     "weak_model": false
+    },
+    "static_yield_stress_at_rest@1200s": {
+     "quantity": "static_yield_stress_at_rest@1200s",
+     "unit": "Pa",
+     "q10": 41.39899031437763,
+     "q50": 1000.5484827719191,
+     "q90": 8979.4319249314,
+     "p_satisfied": 0.46803080075796866,
+     "ad_score": 0.32765777084566095,
+     "n_train": 302,
+     "weak_model": true
+    }
+   },
+   "p_feasible": 0.10285445553806144,
+   "p_min_targets": 0.45205767391299245,
+   "ad_max": 0.5074846063704864,
+   "feasible": true,
+   "pareto_rank": 0,
+   "crowding": Infinity,
+   "objectives": {
+    "powder_kg_m3": 775.2464856590816,
+    "cost_per_kg_powder": 0.14732030095250329,
+    "co2_per_kg_powder": 0.4639167694821441,
+    "cost_per_m3": 114.20954557966643,
+    "co2_per_m3": 359.64984517934647,
+    "clinker_fraction": 0.4999999999999999,
+    "co2_per_mpa": 14.125252465735773,
+    "cost_per_mpa": 4.4855814257483475
+   },
+   "summary": "portland_cement 0.50 / limestone_powder 0.16 / fly_ash_class_F 0.34; w/b 0.355; s/b 1.41; superplasticiser_pce 1.16%, vma_cellulose 0.07%",
+   "analogues": [
+    {
+     "mix_uid": "10.3390/ma18225123::M5",
+     "paper_uid": "10.3390/ma18225123",
+     "doi": "10.3390/ma18225123",
+     "title": "Long-Term Hydration Study of Blended Cement: Calcined Kaolinite-Illite Composite Clays Compared to Fly Ash",
+     "year": 2025,
+     "is_3dcp": 0,
+     "mix_name": "HVFA",
+     "system_type": "paste",
+     "composition_summary": "opc 0.55 / fly_ash_f 0.30 / limestone_powder 0.15; w/b 0.50",
+     "measured": [],
+     "target_distance": NaN,
+     "coverage": NaN,
+     "qualifier_penalty": 0.0,
+     "score": 0.8508756496862315,
+     "tier": "analogue",
+     "feature_distance": 0.16148928366357826,
+     "top_deviations": []
+    },
+    {
+     "mix_uid": "10.3390/ma18225123::M6",
+     "paper_uid": "10.3390/ma18225123",
+     "doi": "10.3390/ma18225123",
+     "title": "Long-Term Hydration Study of Blended Cement: Calcined Kaolinite-Illite Composite Clays Compared to Fly Ash",
+     "year": 2025,
+     "is_3dcp": 0,
+     "mix_name": "HVFA (mortar)",
+     "system_type": "mortar",
+     "composition_summary": "opc 0.55 / fly_ash_f 0.30 / limestone_powder 0.15; w/b 0.50",
+     "measured": [
+      {
+       "quantity": "compressive_strength",
+       "value": 12.0,
+       "unit": "MPa",
+       "age_d": 2.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 13.6,
+       "unit": "MPa",
+       "age_d": 3.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 20.0,
+       "unit": "MPa",
+       "age_d": 7.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 23.333333333333332,
+       "unit": "MPa",
+       "age_d": 14.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 26.666666666666664,
+       "unit": "MPa",
+       "age_d": 21.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 30.0,
+       "unit": "MPa",
+       "age_d": 28.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 35.0,
+       "unit": "MPa",
+       "age_d": 56.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 36.0,
+       "unit": "MPa",
+       "age_d": 90.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      }
+     ],
+     "target_distance": NaN,
+     "coverage": NaN,
+     "qualifier_penalty": 0.0,
+     "score": 0.8508756496862315,
+     "tier": "analogue",
+     "feature_distance": 0.16148928366357826,
+     "top_deviations": []
+    },
+    {
+     "mix_uid": "10.1016/j.jobe.2024.110287::M7",
+     "paper_uid": "10.1016/j.jobe.2024.110287",
+     "doi": "10.1016/j.jobe.2024.110287",
+     "title": "Effect of metakaolin, fly ash and limestone quaternary blends on the microstructure and performance of cementitious materials",
+     "year": 2024,
+     "is_3dcp": 0,
+     "mix_name": "100FA",
+     "system_type": "paste",
+     "composition_summary": "opc 0.54 / fly_ash_f 0.29 / limestone_powder 0.15 / gypsum_sulfate 0.02; w/b 0.50",
+     "measured": [
+      {
+       "quantity": "compressive_strength",
+       "value": 4.0,
+       "unit": "MPa",
+       "age_d": 1.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 10.5,
+       "unit": "MPa",
+       "age_d": 2.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 17.0,
+       "unit": "MPa",
+       "age_d": 3.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 22.0,
+       "unit": "MPa",
+       "age_d": 7.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 24.166666666666668,
+       "unit": "MPa",
+       "age_d": 14.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 26.333333333333336,
+       "unit": "MPa",
+       "age_d": 21.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 28.5,
+       "unit": "MPa",
+       "age_d": 28.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 31.887096774193548,
+       "unit": "MPa",
+       "age_d": 56.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 36.0,
+       "unit": "MPa",
+       "age_d": 90.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      }
+     ],
+     "target_distance": NaN,
+     "coverage": NaN,
+     "qualifier_penalty": 0.0,
+     "score": 0.8117095246249223,
+     "tier": "analogue",
+     "feature_distance": 0.20861273111491965,
+     "top_deviations": [
+      "pw_gypsum_sulfate: analogue 0.0196 vs candidate 0"
+     ]
+    }
+   ],
+   "refined": "True"
+  },
+  {
+   "rank": 2,
+   "name": "cand_02",
+   "mix": {
+    "system_type": "mortar",
+    "components": [
+     {
+      "material_class": "portland_cement",
+      "amount": 0.5,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     },
+     {
+      "material_class": "limestone_powder",
+      "amount": 0.17206047325734689,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     },
+     {
+      "material_class": "fly_ash_class_F",
+      "amount": 0.32793952674265325,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     },
+     {
+      "material_class": "superplasticiser_pce",
+      "amount": 0.0021144958929881067,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     }
+    ],
+    "water_binder": 0.31757108138043844,
+    "sand_binder": 1.2292434950648523,
+    "conditions": {
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": null,
+     "curing_temp_C": 20,
+     "curing_rh_pct": 95,
+     "curing_regime": "moist curing",
+     "is_3dcp": 1,
+     "mix_time_s": null,
+     "max_rpm": null,
+     "mixer_type": null,
+     "rheometer_geometry": null,
+     "rheometer_method": null,
+     "rheometer": {}
+    },
+    "basis": "mass_frac_of_powder",
+    "name": "cand_02",
+    "year": null,
+    "schema_version": "1.0"
+   },
+   "z": [
+    0.05997303477359378,
+    0.6601360815858804,
+    0.7157080497454505,
+    0.9264786710223538,
+    0.1995225055143237,
+    0.6392870265990496,
+    0.6862808503210545,
+    0.22100636106140226,
+    0.4292434950648522,
+    0.13396095298230648,
+    0.3529571043327451,
+    0.2765149757249599,
+    0.14309483212847252
+   ],
+   "predictions": {
+    "compressive_strength": {
+     "quantity": "compressive_strength",
+     "unit": "MPa",
+     "q10": 24.490363980994484,
+     "q50": 48.51617155328033,
+     "q90": 78.0872956267116,
+     "p_satisfied": 0.7645332520948697,
+     "ad_score": 0.4946625184039224,
+     "n_train": 44383,
+     "weak_model": false
+    },
+    "shear_stress_at_rate@50/s": {
+     "quantity": "shear_stress_at_rate@50/s",
+     "unit": "Pa",
+     "q10": 57.776824966095205,
+     "q50": 378.2663685408394,
+     "q90": 1189.5526601236659,
+     "p_satisfied": 0.5093835845332241,
+     "ad_score": 0.3856652112548929,
+     "n_train": 1241,
+     "weak_model": false
+    },
+    "shear_stress_at_rate@150/s": {
+     "quantity": "shear_stress_at_rate@150/s",
+     "unit": "Pa",
+     "q10": 122.39734223796006,
+     "q50": 813.6064969431725,
+     "q90": 3153.9878014346123,
+     "p_satisfied": 0.742040247546504,
+     "ad_score": 0.3856652112548929,
+     "n_train": 1241,
+     "weak_model": false
+    },
+    "static_yield_stress_at_rest@1200s": {
+     "quantity": "static_yield_stress_at_rest@1200s",
+     "unit": "Pa",
+     "q10": 45.041452126633835,
+     "q50": 978.6335590238077,
+     "q90": 13521.96019145304,
+     "p_satisfied": 0.4787591863789481,
+     "ad_score": 0.2890692857452118,
+     "n_train": 302,
+     "weak_model": true
+    }
+   },
+   "p_feasible": 0.13835214798754408,
+   "p_min_targets": 0.4787591863789481,
+   "ad_max": 0.4946625184039224,
+   "feasible": true,
+   "pareto_rank": 0,
+   "crowding": 1.931826175859984e-15,
+   "objectives": {
+    "powder_kg_m3": 853.2950539298512,
+    "cost_per_kg_powder": 0.10952532392906833,
+    "co2_per_kg_powder": 0.44370024046156253,
+    "cost_per_m3": 93.45741718873877,
+    "co2_per_m3": 378.60722061333695,
+    "clinker_fraction": 0.4999999999999999,
+    "co2_per_mpa": 15.459436246319227,
+    "cost_per_mpa": 3.816089350949031
+   },
+   "summary": "portland_cement 0.50 / limestone_powder 0.17 / fly_ash_class_F 0.33; w/b 0.318; s/b 1.23; superplasticiser_pce 0.21%",
+   "analogues": [
+    {
+     "mix_uid": "10.3390/ma18225123::M5",
+     "paper_uid": "10.3390/ma18225123",
+     "doi": "10.3390/ma18225123",
+     "title": "Long-Term Hydration Study of Blended Cement: Calcined Kaolinite-Illite Composite Clays Compared to Fly Ash",
+     "year": 2025,
+     "is_3dcp": 0,
+     "mix_name": "HVFA",
+     "system_type": "paste",
+     "composition_summary": "opc 0.55 / fly_ash_f 0.30 / limestone_powder 0.15; w/b 0.50",
+     "measured": [],
+     "target_distance": NaN,
+     "coverage": NaN,
+     "qualifier_penalty": 0.0,
+     "score": 0.8405392956782527,
+     "tier": "analogue",
+     "feature_distance": 0.17371157448600566,
+     "top_deviations": [
+      "pw_limestone_powder: analogue 0.15 vs candidate 0.172"
+     ]
+    },
+    {
+     "mix_uid": "10.3390/ma18225123::M6",
+     "paper_uid": "10.3390/ma18225123",
+     "doi": "10.3390/ma18225123",
+     "title": "Long-Term Hydration Study of Blended Cement: Calcined Kaolinite-Illite Composite Clays Compared to Fly Ash",
+     "year": 2025,
+     "is_3dcp": 0,
+     "mix_name": "HVFA (mortar)",
+     "system_type": "mortar",
+     "composition_summary": "opc 0.55 / fly_ash_f 0.30 / limestone_powder 0.15; w/b 0.50",
+     "measured": [
+      {
+       "quantity": "compressive_strength",
+       "value": 12.0,
+       "unit": "MPa",
+       "age_d": 2.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 13.6,
+       "unit": "MPa",
+       "age_d": 3.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 20.0,
+       "unit": "MPa",
+       "age_d": 7.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 23.333333333333332,
+       "unit": "MPa",
+       "age_d": 14.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 26.666666666666664,
+       "unit": "MPa",
+       "age_d": 21.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 30.0,
+       "unit": "MPa",
+       "age_d": 28.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 35.0,
+       "unit": "MPa",
+       "age_d": 56.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 36.0,
+       "unit": "MPa",
+       "age_d": 90.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      }
+     ],
+     "target_distance": NaN,
+     "coverage": NaN,
+     "qualifier_penalty": 0.0,
+     "score": 0.8405392956782527,
+     "tier": "analogue",
+     "feature_distance": 0.17371157448600566,
+     "top_deviations": [
+      "pw_limestone_powder: analogue 0.15 vs candidate 0.172"
+     ]
+    },
+    {
+     "mix_uid": "10.1016/j.jobe.2024.110287::M7",
+     "paper_uid": "10.1016/j.jobe.2024.110287",
+     "doi": "10.1016/j.jobe.2024.110287",
+     "title": "Effect of metakaolin, fly ash and limestone quaternary blends on the microstructure and performance of cementitious materials",
+     "year": 2024,
+     "is_3dcp": 0,
+     "mix_name": "100FA",
+     "system_type": "paste",
+     "composition_summary": "opc 0.54 / fly_ash_f 0.29 / limestone_powder 0.15 / gypsum_sulfate 0.02; w/b 0.50",
+     "measured": [
+      {
+       "quantity": "compressive_strength",
+       "value": 4.0,
+       "unit": "MPa",
+       "age_d": 1.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 10.5,
+       "unit": "MPa",
+       "age_d": 2.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 17.0,
+       "unit": "MPa",
+       "age_d": 3.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 22.0,
+       "unit": "MPa",
+       "age_d": 7.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 24.166666666666668,
+       "unit": "MPa",
+       "age_d": 14.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 26.333333333333336,
+       "unit": "MPa",
+       "age_d": 21.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 28.5,
+       "unit": "MPa",
+       "age_d": 28.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 31.887096774193548,
+       "unit": "MPa",
+       "age_d": 56.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 36.0,
+       "unit": "MPa",
+       "age_d": 90.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      }
+     ],
+     "target_distance": NaN,
+     "coverage": NaN,
+     "qualifier_penalty": 0.0,
+     "score": 0.8095318377559912,
+     "tier": "analogue",
+     "feature_distance": 0.21129917648839316,
+     "top_deviations": [
+      "pw_gypsum_sulfate: analogue 0.0196 vs candidate 0",
+      "pw_limestone_powder: analogue 0.147 vs candidate 0.172"
+     ]
+    }
+   ],
+   "refined": "True"
+  },
+  {
+   "rank": 3,
+   "name": "cand_03",
+   "mix": {
+    "system_type": "mortar",
+    "components": [
+     {
+      "material_class": "portland_cement",
+      "amount": 0.5,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     },
+     {
+      "material_class": "silica_fume",
+      "amount": 0.12369299808983727,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     },
+     {
+      "material_class": "fly_ash_class_F",
+      "amount": 0.37630700191016286,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     },
+     {
+      "material_class": "superplasticiser_pce",
+      "amount": 0.007324862593399731,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     },
+     {
+      "material_class": "vma_cellulose",
+      "amount": 0.0007394606031603949,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     }
+    ],
+    "water_binder": 0.3948152778395747,
+    "sand_binder": 1.5846282416265702,
+    "conditions": {
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": null,
+     "curing_temp_C": 20,
+     "curing_rh_pct": 95,
+     "curing_regime": "moist curing",
+     "is_3dcp": 1,
+     "mix_time_s": null,
+     "max_rpm": null,
+     "mixer_type": null,
+     "rheometer_geometry": null,
+     "rheometer_method": null,
+     "rheometer": {}
+    },
+    "basis": "mass_frac_of_powder",
+    "name": "cand_03",
+    "year": null,
+    "schema_version": "1.0"
+   },
+   "z": [
+    0.022813253115192167,
+    0.9761312472291773,
+    0.5692489555268204,
+    0.9975842272617553,
+    0.8645443832501769,
+    0.4869109960272908,
+    0.9604865415021777,
+    0.675383987291616,
+    0.7846282416265703,
+    0.8394482182338834,
+    0.8878642851486802,
+    0.7353166478732455,
+    0.5882489591935415
+   ],
+   "predictions": {
+    "compressive_strength": {
+     "quantity": "compressive_strength",
+     "unit": "MPa",
+     "q10": 26.4138260604466,
+     "q50": 48.16460252256507,
+     "q90": 75.02668075601254,
+     "p_satisfied": 0.7810238922960473,
+     "ad_score": 0.4774816642886088,
+     "n_train": 44383,
+     "weak_model": false
+    },
+    "shear_stress_at_rate@50/s": {
+     "quantity": "shear_stress_at_rate@50/s",
+     "unit": "Pa",
+     "q10": 84.51806708055685,
+     "q50": 503.3191578256599,
+     "q90": 1375.8040870146801,
+     "p_satisfied": 0.4918425865184148,
+     "ad_score": 0.3741768602103951,
+     "n_train": 1241,
+     "weak_model": false
+    },
+    "shear_stress_at_rate@150/s": {
+     "quantity": "shear_stress_at_rate@150/s",
+     "unit": "Pa",
+     "q10": 177.93380288688306,
+     "q50": 984.5892549281048,
+     "q90": 3677.8024252198175,
+     "p_satisfied": 0.6855153063779227,
+     "ad_score": 0.3741768602103951,
+     "n_train": 1241,
+     "weak_model": false
+    },
+    "static_yield_stress_at_rest@1200s": {
+     "quantity": "static_yield_stress_at_rest@1200s",
+     "unit": "Pa",
+     "q10": 46.00434855828233,
+     "q50": 907.7712251236345,
+     "q90": 12078.850826207883,
+     "p_satisfied": 0.4729163932644599,
+     "ad_score": 0.38473455987538513,
+     "n_train": 302,
+     "weak_model": true
+    }
+   },
+   "p_feasible": 0.12453515749093266,
+   "p_min_targets": 0.4729163932644599,
+   "ad_max": 0.4774816642886088,
+   "feasible": true,
+   "pareto_rank": 0,
+   "crowding": 0.0,
+   "objectives": {
+    "powder_kg_m3": 710.7119193935805,
+    "cost_per_kg_powder": 0.2092457316461622,
+    "co2_per_kg_powder": 0.4546746759061633,
+    "cost_per_m3": 148.71343556315801,
+    "co2_per_m3": 323.14271161292345,
+    "clinker_fraction": 0.4999999999999999,
+    "co2_per_mpa": 12.233847185690895,
+    "cost_per_mpa": 5.630136097013565
+   },
+   "summary": "portland_cement 0.50 / silica_fume 0.12 / fly_ash_class_F 0.38; w/b 0.395; s/b 1.58; superplasticiser_pce 0.73%, vma_cellulose 0.07%",
+   "analogues": [
+    {
+     "mix_uid": "10.1016/j.conbuildmat.2010.04.018::M3",
+     "paper_uid": "10.1016/j.conbuildmat.2010.04.018",
+     "doi": "10.1016/j.conbuildmat.2010.04.018",
+     "title": "The relationship between autogenous shrinkage and pore structure of cement paste with mineral admixtures",
+     "year": 2010,
+     "is_3dcp": 0,
+     "mix_name": "A3",
+     "system_type": "paste",
+     "composition_summary": "opc 0.70 / fly_ash_f 0.20 / silica_fume 0.10; w/b 0.30; sp_other 1.04%",
+     "measured": [],
+     "target_distance": NaN,
+     "coverage": NaN,
+     "qualifier_penalty": 0.0,
+     "score": 0.6109298953465825,
+     "tier": "analogue",
+     "feature_distance": 0.4927730639603681,
+     "top_deviations": [
+      "pw_fly_ash_f: analogue 0.2 vs candidate 0.376",
+      "cement_share: analogue 0.7 vs candidate 0.5",
+      "pw_opc: analogue 0.7 vs candidate 0.5"
+     ]
+    },
+    {
+     "mix_uid": "10.3389/fmats.2021.712551::M9",
+     "paper_uid": "10.3389/fmats.2021.712551",
+     "doi": "10.3389/fmats.2021.712551",
+     "title": "Multi-Objective Optimization of Nano-Silica Modified Cement-Based Materials Mixed With Supplementary Cementitious Materials Based on Response Surface Method",
+     "year": 2021,
+     "is_3dcp": 0,
+     "mix_name": "M9",
+     "system_type": "paste",
+     "composition_summary": "opc 0.48 / fly_ash_f 0.30 / ggbfs 0.15 / silica_fume 0.06; w/b 0.30; sp_pce 0.50%",
+     "measured": [
+      {
+       "quantity": "compressive_strength",
+       "value": 38.17,
+       "unit": "MPa",
+       "age_d": 3.0,
+       "comparability_group": "comp_cube_other",
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 65.77,
+       "unit": "MPa",
+       "age_d": 7.0,
+       "comparability_group": "comp_cube_other",
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 93.91,
+       "unit": "MPa",
+       "age_d": 28.0,
+       "comparability_group": "comp_cube_other",
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 107.3,
+       "unit": "MPa",
+       "age_d": 56.0,
+       "comparability_group": "comp_cube_other",
+       "rest_time_s": null
+      }
+     ],
+     "target_distance": NaN,
+     "coverage": NaN,
+     "qualifier_penalty": 0.0,
+     "score": 0.6099569440674847,
+     "tier": "analogue",
+     "feature_distance": 0.49436690780183906,
+     "top_deviations": [
+      "pw_silica_fume: analogue 0.0606 vs candidate 0.124",
+      "pw_ggbfs: analogue 0.152 vs candidate 0",
+      "pw_fly_ash_f: analogue 0.303 vs candidate 0.376"
+     ]
+    },
+    {
+     "mix_uid": "10.1016/j.conbuildmat.2010.04.018::M4",
+     "paper_uid": "10.1016/j.conbuildmat.2010.04.018",
+     "doi": "10.1016/j.conbuildmat.2010.04.018",
+     "title": "The relationship between autogenous shrinkage and pore structure of cement paste with mineral admixtures",
+     "year": 2010,
+     "is_3dcp": 0,
+     "mix_name": "A4",
+     "system_type": "paste",
+     "composition_summary": "opc 0.70 / fly_ash_f 0.17 / silica_fume 0.13; w/b 0.30; sp_other 1.04%",
+     "measured": [],
+     "target_distance": NaN,
+     "coverage": NaN,
+     "qualifier_penalty": 0.0,
+     "score": 0.6044029885303203,
+     "tier": "analogue",
+     "feature_distance": 0.5035141039724809,
+     "top_deviations": [
+      "pw_fly_ash_f: analogue 0.171 vs candidate 0.376",
+      "cement_share: analogue 0.7 vs candidate 0.5",
+      "pw_opc: analogue 0.7 vs candidate 0.5"
+     ]
+    }
+   ],
+   "refined": "True"
+  },
+  {
+   "rank": 4,
+   "name": "cand_04",
+   "mix": {
+    "system_type": "mortar",
+    "components": [
+     {
+      "material_class": "portland_cement",
+      "amount": 0.5,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     },
+     {
+      "material_class": "silica_fume",
+      "amount": 0.10772153022614765,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     },
+     {
+      "material_class": "fly_ash_class_F",
+      "amount": 0.3922784697738525,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     },
+     {
+      "material_class": "superplasticiser_pce",
+      "amount": 0.0025396130379367033,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     }
+    ],
+    "water_binder": 0.28097879328853964,
+    "sand_binder": 1.634689737628132,
+    "conditions": {
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": null,
+     "curing_temp_C": 20,
+     "curing_rh_pct": 95,
+     "curing_regime": "moist curing",
+     "is_3dcp": 1,
+     "mix_time_s": null,
+     "max_rpm": null,
+     "mixer_type": null,
+     "rheometer_geometry": null,
+     "rheometer_method": null,
+     "rheometer": {}
+    },
+    "basis": "mass_frac_of_powder",
+    "name": "cand_04",
+    "year": null,
+    "schema_version": "1.0"
+   },
+   "z": [
+    0.0,
+    0.7696204030153012,
+    0.2695072047531034,
+    1.0,
+    0.7954069962725043,
+    0.6572666149586439,
+    0.7137899054214358,
+    0.00575760757964483,
+    0.8346897376281319,
+    0.3442898066714406,
+    0.3178120534867048,
+    0.34416338433315097,
+    0.13859283691810198
+   ],
+   "predictions": {
+    "compressive_strength": {
+     "quantity": "compressive_strength",
+     "unit": "MPa",
+     "q10": 34.71847055364328,
+     "q50": 60.173390251199294,
+     "q90": 94.21213869658698,
+     "p_satisfied": 0.8974898659489103,
+     "ad_score": 0.424652932493762,
+     "n_train": 44383,
+     "weak_model": false
+    },
+    "shear_stress_at_rate@50/s": {
+     "quantity": "shear_stress_at_rate@50/s",
+     "unit": "Pa",
+     "q10": 79.39588557235152,
+     "q50": 460.01807353217873,
+     "q90": 1367.1787530722418,
+     "p_satisfied": 0.4938342512862136,
+     "ad_score": 0.28625430495125,
+     "n_train": 1241,
+     "weak_model": false
+    },
+    "shear_stress_at_rate@150/s": {
+     "quantity": "shear_stress_at_rate@150/s",
+     "unit": "Pa",
+     "q10": 174.13853613589,
+     "q50": 989.8717431691372,
+     "q90": 3601.5284882738715,
+     "p_satisfied": 0.6899379321526545,
+     "ad_score": 0.28625430495125,
+     "n_train": 1241,
+     "weak_model": false
+    },
+    "static_yield_stress_at_rest@1200s": {
+     "quantity": "static_yield_stress_at_rest@1200s",
+     "unit": "Pa",
+     "q10": 41.629101078901115,
+     "q50": 863.8860808254387,
+     "q90": 16059.342246174743,
+     "p_satisfied": 0.47860762416280356,
+     "ad_score": 0.36856005431261224,
+     "n_train": 302,
+     "weak_model": true
+    }
+   },
+   "p_feasible": 0.14635258479707536,
+   "p_min_targets": 0.47860762416280356,
+   "ad_max": 0.424652932493762,
+   "feasible": true,
+   "pareto_rank": 0,
+   "crowding": 0.0,
+   "objectives": {
+    "powder_kg_m3": 766.5161520484659,
+    "cost_per_kg_powder": 0.18091766958630393,
+    "co2_per_kg_powder": 0.4441602224004684,
+    "cost_per_m3": 138.67631592886946,
+    "co2_per_m3": 340.4559845673978,
+    "clinker_fraction": 0.4999999999999999,
+    "co2_per_mpa": 9.806191895503044,
+    "cost_per_mpa": 3.994309476121697
+   },
+   "summary": "portland_cement 0.50 / silica_fume 0.11 / fly_ash_class_F 0.39; w/b 0.281; s/b 1.63; superplasticiser_pce 0.25%",
+   "analogues": [
+    {
+     "mix_uid": "10.3389/fmats.2021.712551::M9",
+     "paper_uid": "10.3389/fmats.2021.712551",
+     "doi": "10.3389/fmats.2021.712551",
+     "title": "Multi-Objective Optimization of Nano-Silica Modified Cement-Based Materials Mixed With Supplementary Cementitious Materials Based on Response Surface Method",
+     "year": 2021,
+     "is_3dcp": 0,
+     "mix_name": "M9",
+     "system_type": "paste",
+     "composition_summary": "opc 0.48 / fly_ash_f 0.30 / ggbfs 0.15 / silica_fume 0.06; w/b 0.30; sp_pce 0.50%",
+     "measured": [
+      {
+       "quantity": "compressive_strength",
+       "value": 38.17,
+       "unit": "MPa",
+       "age_d": 3.0,
+       "comparability_group": "comp_cube_other",
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 65.77,
+       "unit": "MPa",
+       "age_d": 7.0,
+       "comparability_group": "comp_cube_other",
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 93.91,
+       "unit": "MPa",
+       "age_d": 28.0,
+       "comparability_group": "comp_cube_other",
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 107.3,
+       "unit": "MPa",
+       "age_d": 56.0,
+       "comparability_group": "comp_cube_other",
+       "rest_time_s": null
+      }
+     ],
+     "target_distance": NaN,
+     "coverage": NaN,
+     "qualifier_penalty": 0.0,
+     "score": 0.6653839364494258,
+     "tier": "analogue",
+     "feature_distance": 0.40739105688329413,
+     "top_deviations": [
+      "pw_silica_fume: analogue 0.0606 vs candidate 0.108",
+      "pw_ggbfs: analogue 0.152 vs candidate 0",
+      "pw_fly_ash_f: analogue 0.303 vs candidate 0.392"
+     ]
+    },
+    {
+     "mix_uid": "10.1016/j.conbuildmat.2010.04.018::M3",
+     "paper_uid": "10.1016/j.conbuildmat.2010.04.018",
+     "doi": "10.1016/j.conbuildmat.2010.04.018",
+     "title": "The relationship between autogenous shrinkage and pore structure of cement paste with mineral admixtures",
+     "year": 2010,
+     "is_3dcp": 0,
+     "mix_name": "A3",
+     "system_type": "paste",
+     "composition_summary": "opc 0.70 / fly_ash_f 0.20 / silica_fume 0.10; w/b 0.30; sp_other 1.04%",
+     "measured": [],
+     "target_distance": NaN,
+     "coverage": NaN,
+     "qualifier_penalty": 0.0,
+     "score": 0.6179807849240528,
+     "tier": "analogue",
+     "feature_distance": 0.48129791436372515,
+     "top_deviations": [
+      "pw_fly_ash_f: analogue 0.2 vs candidate 0.392",
+      "cement_share: analogue 0.7 vs candidate 0.5",
+      "pw_opc: analogue 0.7 vs candidate 0.5"
+     ]
+    },
+    {
+     "mix_uid": "10.1016/j.conbuildmat.2010.04.018::M2",
+     "paper_uid": "10.1016/j.conbuildmat.2010.04.018",
+     "doi": "10.1016/j.conbuildmat.2010.04.018",
+     "title": "The relationship between autogenous shrinkage and pore structure of cement paste with mineral admixtures",
+     "year": 2010,
+     "is_3dcp": 0,
+     "mix_name": "A2",
+     "system_type": "paste",
+     "composition_summary": "opc 0.70 / fly_ash_f 0.22 / silica_fume 0.08; w/b 0.30; sp_other 1.04%",
+     "measured": [],
+     "target_distance": NaN,
+     "coverage": NaN,
+     "qualifier_penalty": 0.0,
+     "score": 0.6097585962008739,
+     "tier": "analogue",
+     "feature_distance": 0.4946921440750697,
+     "top_deviations": [
+      "pw_fly_ash_f: analogue 0.222 vs candidate 0.392",
+      "cement_share: analogue 0.7 vs candidate 0.5",
+      "pw_silica_fume: analogue 0.0781 vs candidate 0.108"
+     ]
+    }
+   ],
+   "refined": "True"
+  },
+  {
+   "rank": 5,
+   "name": "cand_05",
+   "mix": {
+    "system_type": "mortar",
+    "components": [
+     {
+      "material_class": "portland_cement",
+      "amount": 0.5,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     },
+     {
+      "material_class": "limestone_powder",
+      "amount": 0.17042839443315186,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     },
+     {
+      "material_class": "fly_ash_class_F",
+      "amount": 0.3295716055668483,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     },
+     {
+      "material_class": "superplasticiser_pce",
+      "amount": 0.0021514856397836396,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     },
+     {
+      "material_class": "vma_cellulose",
+      "amount": 0.0008069064376687757,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     }
+    ],
+    "water_binder": 0.31456699903158974,
+    "sand_binder": 1.7976399320936747,
+    "conditions": {
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": null,
+     "curing_temp_C": 20,
+     "curing_rh_pct": 95,
+     "curing_regime": "moist curing",
+     "is_3dcp": 1,
+     "mix_time_s": null,
+     "max_rpm": null,
+     "mixer_type": null,
+     "rheometer_geometry": null,
+     "rheometer_method": null,
+     "rheometer": {}
+    },
+    "basis": "mass_frac_of_powder",
+    "name": "cand_05",
+    "year": null,
+    "schema_version": "1.0"
+   },
+   "z": [
+    0.006916990738996598,
+    0.2466619101182823,
+    0.7504897686262584,
+    0.9607253543039347,
+    0.6254371451213956,
+    0.7230186676606536,
+    0.9855963531881571,
+    0.20333528842111592,
+    0.9976399320936746,
+    0.6780723249539733,
+    0.6914345473051071,
+    0.28291890543559484,
+    0.6139124851635299
+   ],
+   "predictions": {
+    "compressive_strength": {
+     "quantity": "compressive_strength",
+     "unit": "MPa",
+     "q10": 24.565518592326576,
+     "q50": 47.94690478425823,
+     "q90": 77.81487298595123,
+     "p_satisfied": 0.7610331018429246,
+     "ad_score": 0.47419333491550797,
+     "n_train": 44383,
+     "weak_model": false
+    },
+    "shear_stress_at_rate@50/s": {
+     "quantity": "shear_stress_at_rate@50/s",
+     "unit": "Pa",
+     "q10": 78.16241008701492,
+     "q50": 646.715407158119,
+     "q90": 1413.0056860122222,
+     "p_satisfied": 0.4441755168835963,
+     "ad_score": 0.4030194549236239,
+     "n_train": 1241,
+     "weak_model": false
+    },
+    "shear_stress_at_rate@150/s": {
+     "quantity": "shear_stress_at_rate@150/s",
+     "unit": "Pa",
+     "q10": 172.61448010464696,
+     "q50": 1107.6018007858588,
+     "q90": 3471.9688199337697,
+     "p_satisfied": 0.6857021017442525,
+     "ad_score": 0.4030194549236239,
+     "n_train": 1241,
+     "weak_model": false
+    },
+    "static_yield_stress_at_rest@1200s": {
+     "quantity": "static_yield_stress_at_rest@1200s",
+     "unit": "Pa",
+     "q10": 51.97908247049819,
+     "q50": 1079.0884231821308,
+     "q90": 11189.45313242129,
+     "p_satisfied": 0.4787252630842871,
+     "ad_score": 0.2968459496970183,
+     "n_train": 302,
+     "weak_model": true
+    }
+   },
+   "p_feasible": 0.11096346013686562,
+   "p_min_targets": 0.4441755168835963,
+   "ad_max": 0.47419333491550797,
+   "feasible": true,
+   "pareto_rank": 0,
+   "crowding": 0.0,
+   "objectives": {
+    "powder_kg_m3": 720.1988987834405,
+    "cost_per_kg_powder": 0.12747279011727466,
+    "co2_per_kg_powder": 0.44819277323976725,
+    "cost_per_m3": 91.80576306731386,
+    "co2_per_m3": 322.78794172997664,
+    "clinker_fraction": 0.4999999999999999,
+    "co2_per_mpa": 13.139878994079307,
+    "cost_per_mpa": 3.73717993057109
+   },
+   "summary": "portland_cement 0.50 / limestone_powder 0.17 / fly_ash_class_F 0.33; w/b 0.315; s/b 1.80; superplasticiser_pce 0.22%, vma_cellulose 0.08%",
+   "analogues": [
+    {
+     "mix_uid": "10.3390/ma18225123::M5",
+     "paper_uid": "10.3390/ma18225123",
+     "doi": "10.3390/ma18225123",
+     "title": "Long-Term Hydration Study of Blended Cement: Calcined Kaolinite-Illite Composite Clays Compared to Fly Ash",
+     "year": 2025,
+     "is_3dcp": 0,
+     "mix_name": "HVFA",
+     "system_type": "paste",
+     "composition_summary": "opc 0.55 / fly_ash_f 0.30 / limestone_powder 0.15; w/b 0.50",
+     "measured": [],
+     "target_distance": NaN,
+     "coverage": NaN,
+     "qualifier_penalty": 0.0,
+     "score": 0.828677018352987,
+     "tier": "analogue",
+     "feature_distance": 0.18792480367894945,
+     "top_deviations": [
+      "pw_limestone_powder: analogue 0.15 vs candidate 0.17"
+     ]
+    },
+    {
+     "mix_uid": "10.3390/ma18225123::M6",
+     "paper_uid": "10.3390/ma18225123",
+     "doi": "10.3390/ma18225123",
+     "title": "Long-Term Hydration Study of Blended Cement: Calcined Kaolinite-Illite Composite Clays Compared to Fly Ash",
+     "year": 2025,
+     "is_3dcp": 0,
+     "mix_name": "HVFA (mortar)",
+     "system_type": "mortar",
+     "composition_summary": "opc 0.55 / fly_ash_f 0.30 / limestone_powder 0.15; w/b 0.50",
+     "measured": [
+      {
+       "quantity": "compressive_strength",
+       "value": 12.0,
+       "unit": "MPa",
+       "age_d": 2.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 13.6,
+       "unit": "MPa",
+       "age_d": 3.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 20.0,
+       "unit": "MPa",
+       "age_d": 7.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 23.333333333333332,
+       "unit": "MPa",
+       "age_d": 14.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 26.666666666666664,
+       "unit": "MPa",
+       "age_d": 21.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 30.0,
+       "unit": "MPa",
+       "age_d": 28.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 35.0,
+       "unit": "MPa",
+       "age_d": 56.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 36.0,
+       "unit": "MPa",
+       "age_d": 90.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      }
+     ],
+     "target_distance": NaN,
+     "coverage": NaN,
+     "qualifier_penalty": 0.0,
+     "score": 0.828677018352987,
+     "tier": "analogue",
+     "feature_distance": 0.18792480367894945,
+     "top_deviations": [
+      "pw_limestone_powder: analogue 0.15 vs candidate 0.17"
+     ]
+    },
+    {
+     "mix_uid": "10.1016/j.jobe.2024.110287::M7",
+     "paper_uid": "10.1016/j.jobe.2024.110287",
+     "doi": "10.1016/j.jobe.2024.110287",
+     "title": "Effect of metakaolin, fly ash and limestone quaternary blends on the microstructure and performance of cementitious materials",
+     "year": 2024,
+     "is_3dcp": 0,
+     "mix_name": "100FA",
+     "system_type": "paste",
+     "composition_summary": "opc 0.54 / fly_ash_f 0.29 / limestone_powder 0.15 / gypsum_sulfate 0.02; w/b 0.50",
+     "measured": [
+      {
+       "quantity": "compressive_strength",
+       "value": 4.0,
+       "unit": "MPa",
+       "age_d": 1.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 10.5,
+       "unit": "MPa",
+       "age_d": 2.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 17.0,
+       "unit": "MPa",
+       "age_d": 3.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 22.0,
+       "unit": "MPa",
+       "age_d": 7.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 24.166666666666668,
+       "unit": "MPa",
+       "age_d": 14.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 26.333333333333336,
+       "unit": "MPa",
+       "age_d": 21.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 28.5,
+       "unit": "MPa",
+       "age_d": 28.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 31.887096774193548,
+       "unit": "MPa",
+       "age_d": 56.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 36.0,
+       "unit": "MPa",
+       "age_d": 90.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      }
+     ],
+     "target_distance": NaN,
+     "coverage": NaN,
+     "qualifier_penalty": 0.0,
+     "score": 0.7989893442218187,
+     "tier": "analogue",
+     "feature_distance": 0.22440766969801104,
+     "top_deviations": [
+      "pw_gypsum_sulfate: analogue 0.0196 vs candidate 0",
+      "pw_limestone_powder: analogue 0.147 vs candidate 0.17"
+     ]
+    }
+   ],
+   "refined": "True"
+  },
+  {
+   "rank": 6,
+   "name": "cand_06",
+   "mix": {
+    "system_type": "mortar",
+    "components": [
+     {
+      "material_class": "portland_cement",
+      "amount": 0.5,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     },
+     {
+      "material_class": "limestone_powder",
+      "amount": 0.20964853097684677,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     },
+     {
+      "material_class": "fly_ash_class_F",
+      "amount": 0.2903514690231532,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     },
+     {
+      "material_class": "superplasticiser_pce",
+      "amount": 0.011334983885003003,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     },
+     {
+      "material_class": "vma_cellulose",
+      "amount": 0.0007442165431135779,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     }
+    ],
+    "water_binder": 0.2816598052438349,
+    "sand_binder": 0.80337119307369,
+    "conditions": {
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": null,
+     "curing_temp_C": 20,
+     "curing_rh_pct": 95,
+     "curing_regime": "moist curing",
+     "is_3dcp": 1,
+     "mix_time_s": null,
+     "max_rpm": null,
+     "mixer_type": null,
+     "rheometer_geometry": null,
+     "rheometer_method": null,
+     "rheometer": {}
+    },
+    "basis": "mass_frac_of_powder",
+    "name": "cand_06",
+    "year": null,
+    "schema_version": "1.0"
+   },
+   "z": [
+    0.14135771803557873,
+    0.682894442230463,
+    0.9382944470271468,
+    0.905478180386126,
+    0.38471928145736456,
+    0.8412813507020473,
+    0.9706818656995893,
+    0.009763560257852077,
+    0.0033711930736899376,
+    0.8187913903966546,
+    0.6345059908926487,
+    0.8965468443930149,
+    0.5901338951662183
+   ],
+   "predictions": {
+    "compressive_strength": {
+     "quantity": "compressive_strength",
+     "unit": "MPa",
+     "q10": 23.89570816158037,
+     "q50": 49.64309750453201,
+     "q90": 84.84421291283348,
+     "p_satisfied": 0.7669520983907407,
+     "ad_score": 0.5545188972183472,
+     "n_train": 44383,
+     "weak_model": false
+    },
+    "shear_stress_at_rate@50/s": {
+     "quantity": "shear_stress_at_rate@50/s",
+     "unit": "Pa",
+     "q10": 64.74730074386534,
+     "q50": 490.59154347584257,
+     "q90": 1368.7489779341759,
+     "p_satisfied": 0.4832812972209637,
+     "ad_score": 0.501191692270899,
+     "n_train": 1241,
+     "weak_model": false
+    },
+    "shear_stress_at_rate@150/s": {
+     "quantity": "shear_stress_at_rate@150/s",
+     "unit": "Pa",
+     "q10": 143.10977203715328,
+     "q50": 833.0866725427179,
+     "q90": 3665.1145744471996,
+     "p_satisfied": 0.7012685741312722,
+     "ad_score": 0.501191692270899,
+     "n_train": 1241,
+     "weak_model": false
+    },
+    "static_yield_stress_at_rest@1200s": {
+     "quantity": "static_yield_stress_at_rest@1200s",
+     "unit": "Pa",
+     "q10": 48.4265877019633,
+     "q50": 1170.3247678776936,
+     "q90": 10532.470104687494,
+     "p_satisfied": 0.48200260273548445,
+     "ad_score": 0.3283263847764306,
+     "n_train": 302,
+     "weak_model": true
+    }
+   },
+   "p_feasible": 0.12528584001486384,
+   "p_min_targets": 0.48200260273548445,
+   "ad_max": 0.5545188972183472,
+   "feasible": true,
+   "pareto_rank": 1,
+   "crowding": 0.008716634718675705,
+   "objectives": {
+    "powder_kg_m3": 1022.1067346185121,
+    "cost_per_kg_powder": 0.13421128235686677,
+    "co2_per_kg_powder": 0.4613192269942114,
+    "cost_per_m3": 137.1782555587402,
+    "co2_per_m3": 471.5174887197896,
+    "clinker_fraction": 0.5,
+    "co2_per_mpa": 19.732308644357214,
+    "cost_per_mpa": 5.740706851253567
+   },
+   "summary": "portland_cement 0.50 / limestone_powder 0.21 / fly_ash_class_F 0.29; w/b 0.282; s/b 0.80; superplasticiser_pce 1.13%, vma_cellulose 0.07%",
+   "analogues": [
+    {
+     "mix_uid": "10.3390/ma18225123::M5",
+     "paper_uid": "10.3390/ma18225123",
+     "doi": "10.3390/ma18225123",
+     "title": "Long-Term Hydration Study of Blended Cement: Calcined Kaolinite-Illite Composite Clays Compared to Fly Ash",
+     "year": 2025,
+     "is_3dcp": 0,
+     "mix_name": "HVFA",
+     "system_type": "paste",
+     "composition_summary": "opc 0.55 / fly_ash_f 0.30 / limestone_powder 0.15; w/b 0.50",
+     "measured": [],
+     "target_distance": NaN,
+     "coverage": NaN,
+     "qualifier_penalty": 0.0,
+     "score": 0.6763766371352002,
+     "tier": "analogue",
+     "feature_distance": 0.39100520256724147,
+     "top_deviations": [
+      "pw_limestone_powder: analogue 0.15 vs candidate 0.21",
+      "filler_frac: analogue 0.15 vs candidate 0.21"
+     ]
+    },
+    {
+     "mix_uid": "10.3390/ma18225123::M6",
+     "paper_uid": "10.3390/ma18225123",
+     "doi": "10.3390/ma18225123",
+     "title": "Long-Term Hydration Study of Blended Cement: Calcined Kaolinite-Illite Composite Clays Compared to Fly Ash",
+     "year": 2025,
+     "is_3dcp": 0,
+     "mix_name": "HVFA (mortar)",
+     "system_type": "mortar",
+     "composition_summary": "opc 0.55 / fly_ash_f 0.30 / limestone_powder 0.15; w/b 0.50",
+     "measured": [
+      {
+       "quantity": "compressive_strength",
+       "value": 12.0,
+       "unit": "MPa",
+       "age_d": 2.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 13.6,
+       "unit": "MPa",
+       "age_d": 3.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 20.0,
+       "unit": "MPa",
+       "age_d": 7.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 23.333333333333332,
+       "unit": "MPa",
+       "age_d": 14.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 26.666666666666664,
+       "unit": "MPa",
+       "age_d": 21.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 30.0,
+       "unit": "MPa",
+       "age_d": 28.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 35.0,
+       "unit": "MPa",
+       "age_d": 56.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 36.0,
+       "unit": "MPa",
+       "age_d": 90.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      }
+     ],
+     "target_distance": NaN,
+     "coverage": NaN,
+     "qualifier_penalty": 0.0,
+     "score": 0.6763766371352002,
+     "tier": "analogue",
+     "feature_distance": 0.39100520256724147,
+     "top_deviations": [
+      "pw_limestone_powder: analogue 0.15 vs candidate 0.21",
+      "filler_frac: analogue 0.15 vs candidate 0.21"
+     ]
+    },
+    {
+     "mix_uid": "10.1016/j.jobe.2024.110287::M7",
+     "paper_uid": "10.1016/j.jobe.2024.110287",
+     "doi": "10.1016/j.jobe.2024.110287",
+     "title": "Effect of metakaolin, fly ash and limestone quaternary blends on the microstructure and performance of cementitious materials",
+     "year": 2024,
+     "is_3dcp": 0,
+     "mix_name": "100FA",
+     "system_type": "paste",
+     "composition_summary": "opc 0.54 / fly_ash_f 0.29 / limestone_powder 0.15 / gypsum_sulfate 0.02; w/b 0.50",
+     "measured": [
+      {
+       "quantity": "compressive_strength",
+       "value": 4.0,
+       "unit": "MPa",
+       "age_d": 1.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 10.5,
+       "unit": "MPa",
+       "age_d": 2.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 17.0,
+       "unit": "MPa",
+       "age_d": 3.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 22.0,
+       "unit": "MPa",
+       "age_d": 7.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 24.166666666666668,
+       "unit": "MPa",
+       "age_d": 14.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 26.333333333333336,
+       "unit": "MPa",
+       "age_d": 21.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 28.5,
+       "unit": "MPa",
+       "age_d": 28.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 31.887096774193548,
+       "unit": "MPa",
+       "age_d": 56.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 36.0,
+       "unit": "MPa",
+       "age_d": 90.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      }
+     ],
+     "target_distance": NaN,
+     "coverage": NaN,
+     "qualifier_penalty": 0.0,
+     "score": 0.6752461532191854,
+     "tier": "analogue",
+     "feature_distance": 0.3926779831502443,
+     "top_deviations": [
+      "pw_limestone_powder: analogue 0.147 vs candidate 0.21",
+      "filler_frac: analogue 0.167 vs candidate 0.21",
+      "pw_gypsum_sulfate: analogue 0.0196 vs candidate 0"
+     ]
+    }
+   ],
+   "refined": "False"
+  },
+  {
+   "rank": 7,
+   "name": "cand_07",
+   "mix": {
+    "system_type": "mortar",
+    "components": [
+     {
+      "material_class": "portland_cement",
+      "amount": 0.5347455214709044,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     },
+     {
+      "material_class": "silica_fume",
+      "amount": 0.15,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     },
+     {
+      "material_class": "fly_ash_class_F",
+      "amount": 0.3152544785290956,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     },
+     {
+      "material_class": "superplasticiser_pce",
+      "amount": 0.008520039768615867,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     },
+     {
+      "material_class": "vma_cellulose",
+      "amount": 0.0004883472969899181,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     }
+    ],
+    "water_binder": 0.4103168999962509,
+    "sand_binder": 1.5598060313612223,
+    "conditions": {
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": null,
+     "curing_temp_C": 20,
+     "curing_rh_pct": 95,
+     "curing_regime": "moist curing",
+     "is_3dcp": 1,
+     "mix_time_s": null,
+     "max_rpm": null,
+     "mixer_type": null,
+     "rheometer_geometry": null,
+     "rheometer_method": null,
+     "rheometer": {}
+    },
+    "basis": "mass_frac_of_powder",
+    "name": "cand_07",
+    "year": null,
+    "schema_version": "1.0"
+   },
+   "z": [
+    0.0038444884121418,
+    0.9920642087236047,
+    0.4086526073515415,
+    0.7060780031606555,
+    0.8645443832501769,
+    0.4869109960272908,
+    0.9604865415021777,
+    0.7665699999779463,
+    0.7598060313612223,
+    0.8394482182338834,
+    0.8878642851486802,
+    0.7911304626613855,
+    0.4662642190232873
+   ],
+   "predictions": {
+    "compressive_strength": {
+     "quantity": "compressive_strength",
+     "unit": "MPa",
+     "q10": 27.733299837792107,
+     "q50": 45.09598082807946,
+     "q90": 67.7087435393425,
+     "p_satisfied": 0.7719219804281627,
+     "ad_score": 0.5121519379564454,
+     "n_train": 44383,
+     "weak_model": false
+    },
+    "shear_stress_at_rate@50/s": {
+     "quantity": "shear_stress_at_rate@50/s",
+     "unit": "Pa",
+     "q10": 83.42237198003545,
+     "q50": 474.45688081949913,
+     "q90": 1409.725679710637,
+     "p_satisfied": 0.48803203619197233,
+     "ad_score": 0.4282975628106664,
+     "n_train": 1241,
+     "weak_model": false
+    },
+    "shear_stress_at_rate@150/s": {
+     "quantity": "shear_stress_at_rate@150/s",
+     "unit": "Pa",
+     "q10": 178.85173755947977,
+     "q50": 908.9440864063725,
+     "q90": 3815.7608494302176,
+     "p_satisfied": 0.6847497642996676,
+     "ad_score": 0.4282975628106664,
+     "n_train": 1241,
+     "weak_model": false
+    },
+    "static_yield_stress_at_rest@1200s": {
+     "quantity": "static_yield_stress_at_rest@1200s",
+     "unit": "Pa",
+     "q10": 46.136143181682684,
+     "q50": 866.5303406754322,
+     "q90": 13980.911133377023,
+     "p_satisfied": 0.47531990199517293,
+     "ad_score": 0.40470672096566757,
+     "n_train": 302,
+     "weak_model": true
+    }
+   },
+   "p_feasible": 0.12261387832628264,
+   "p_min_targets": 0.47531990199517293,
+   "ad_max": 0.5121519379564454,
+   "feasible": true,
+   "pareto_rank": 3,
+   "crowding": 0.6226547959465754,
+   "objectives": {
+    "powder_kg_m3": 708.9005549972502,
+    "cost_per_kg_powder": 0.22785297692666,
+    "co2_per_kg_powder": 0.48577313341671463,
+    "cost_per_m3": 161.52510180108493,
+    "co2_per_m3": 344.36484388186227,
+    "clinker_fraction": 0.5347455214709044,
+    "co2_per_mpa": 12.417016579202633,
+    "cost_per_mpa": 5.824229455052984
+   },
+   "summary": "portland_cement 0.53 / silica_fume 0.15 / fly_ash_class_F 0.32; w/b 0.410; s/b 1.56; superplasticiser_pce 0.85%, vma_cellulose 0.05%",
+   "analogues": [
+    {
+     "mix_uid": "10.1016/j.cemconcomp.2021.103974::M11",
+     "paper_uid": "10.1016/j.cemconcomp.2021.103974",
+     "doi": "10.1016/j.cemconcomp.2021.103974",
+     "title": "Chloride migration in cement mortars with ultra-low water to binder ratio",
+     "year": 2021,
+     "is_3dcp": 0,
+     "mix_name": "SF-FA17",
+     "system_type": "mortar",
+     "composition_summary": "opc 0.66 / fly_ash_f 0.17 / silica_fume 0.17; w/b 0.16; s/b 1.00; sp_pce 2.50%",
+     "measured": [],
+     "target_distance": NaN,
+     "coverage": NaN,
+     "qualifier_penalty": 0.0,
+     "score": 0.6956798138297167,
+     "tier": "analogue",
+     "feature_distance": 0.36286576209846083,
+     "top_deviations": [
+      "pw_fly_ash_f: analogue 0.17 vs candidate 0.315",
+      "cement_share: analogue 0.66 vs candidate 0.535",
+      "pw_silica_fume: analogue 0.17 vs candidate 0.15"
+     ]
+    },
+    {
+     "mix_uid": "10.1016/j.cemconcomp.2021.103974::M14",
+     "paper_uid": "10.1016/j.cemconcomp.2021.103974",
+     "doi": "10.1016/j.cemconcomp.2021.103974",
+     "title": "Chloride migration in cement mortars with ultra-low water to binder ratio",
+     "year": 2021,
+     "is_3dcp": 0,
+     "mix_name": "SF-FA-S17",
+     "system_type": "mortar",
+     "composition_summary": "opc 0.50 / ggbfs 0.17 / fly_ash_f 0.17 / silica_fume 0.17; w/b 0.16; s/b 1.00; sp_pce 2.50%",
+     "measured": [],
+     "target_distance": NaN,
+     "coverage": NaN,
+     "qualifier_penalty": 0.0,
+     "score": 0.6895249851465444,
+     "tier": "analogue",
+     "feature_distance": 0.37175234578958294,
+     "top_deviations": [
+      "pw_fly_ash_f: analogue 0.168 vs candidate 0.315",
+      "pw_ggbfs: analogue 0.168 vs candidate 0",
+      "pw_silica_fume: analogue 0.168 vs candidate 0.15"
+     ]
+    },
+    {
+     "mix_uid": "10.1016/j.conbuildmat.2010.04.018::M5",
+     "paper_uid": "10.1016/j.conbuildmat.2010.04.018",
+     "doi": "10.1016/j.conbuildmat.2010.04.018",
+     "title": "The relationship between autogenous shrinkage and pore structure of cement paste with mineral admixtures",
+     "year": 2010,
+     "is_3dcp": 0,
+     "mix_name": "A5",
+     "system_type": "paste",
+     "composition_summary": "opc 0.70 / fly_ash_f 0.15 / silica_fume 0.15; w/b 0.30; sp_other 1.04%",
+     "measured": [],
+     "target_distance": NaN,
+     "coverage": NaN,
+     "qualifier_penalty": 0.0,
+     "score": 0.6644911577873269,
+     "tier": "analogue",
+     "feature_distance": 0.4087337074827171,
+     "top_deviations": [
+      "pw_fly_ash_f: analogue 0.15 vs candidate 0.315",
+      "cement_share: analogue 0.7 vs candidate 0.535",
+      "pw_opc: analogue 0.7 vs candidate 0.535"
+     ]
+    }
+   ],
+   "refined": "False"
+  },
+  {
+   "rank": 8,
+   "name": "cand_08",
+   "mix": {
+    "system_type": "mortar",
+    "components": [
+     {
+      "material_class": "portland_cement",
+      "amount": 0.536284998524934,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     },
+     {
+      "material_class": "limestone_powder",
+      "amount": 0.25128031792119143,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     },
+     {
+      "material_class": "fly_ash_class_F",
+      "amount": 0.21243468355387451,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     },
+     {
+      "material_class": "superplasticiser_pce",
+      "amount": 0.002521313742918644,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+     }
+    ],
+    "water_binder": 0.3068901548348367,
+    "sand_binder": 0.8089717153459788,
+    "conditions": {
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": null,
+     "curing_temp_C": 20,
+     "curing_rh_pct": 95,
+     "curing_regime": "moist curing",
+     "is_3dcp": 1,
+     "mix_time_s": null,
+     "max_rpm": null,
+     "mixer_type": null,
+     "rheometer_geometry": null,
+     "rheometer_method": null,
+     "rheometer": {}
+    },
+    "basis": "mass_frac_of_powder",
+    "name": "cand_08",
+    "year": null,
+    "schema_version": "1.0"
+   },
+   "z": [
+    0.10840387549251318,
+    0.5184742603451014,
+    0.8973241904750466,
+    0.5758790569379926,
+    0.1995225055143237,
+    0.6392870265990496,
+    0.6862808503210545,
+    0.15817738138139248,
+    0.008971715345978737,
+    0.13396095298230648,
+    0.3529571043327451,
+    0.3414929648861289,
+    0.6558093372732401
+   ],
+   "predictions": {
+    "compressive_strength": {
+     "quantity": "compressive_strength",
+     "unit": "MPa",
+     "q10": 23.07251267617313,
+     "q50": 50.197424376968634,
+     "q90": 80.73827736359365,
+     "p_satisfied": 0.7636281350721996,
+     "ad_score": 0.5342762990959644,
+     "n_train": 44383,
+     "weak_model": false
+    },
+    "shear_stress_at_rate@50/s": {
+     "quantity": "shear_stress_at_rate@50/s",
+     "unit": "Pa",
+     "q10": 52.66616886039469,
+     "q50": 326.06733869179084,
+     "q90": 1231.3314985879506,
+     "p_satisfied": 0.47158489973167006,
+     "ad_score": 0.3614347336622317,
+     "n_train": 1241,
+     "weak_model": false
+    },
+    "shear_stress_at_rate@150/s": {
+     "quantity": "shear_stress_at_rate@150/s",
+     "unit": "Pa",
+     "q10": 114.220241843668,
+     "q50": 681.7321929542918,
+     "q90": 3410.662779458069,
+     "p_satisfied": 0.7320683911430501,
+     "ad_score": 0.3614347336622317,
+     "n_train": 1241,
+     "weak_model": false
+    },
+    "static_yield_stress_at_rest@1200s": {
+     "quantity": "static_yield_stress_at_rest@1200s",
+     "unit": "Pa",
+     "q10": 41.35866809580358,
+     "q50": 971.4903434476005,
+     "q90": 15112.131688837708,
+     "p_satisfied": 0.4808986556757796,
+     "ad_score": 0.24250335935703024,
+     "n_train": 302,
+     "weak_model": true
+    }
+   },
+   "p_feasible": 0.12677891483878015,
+   "p_min_targets": 0.47158489973167006,
+   "ad_max": 0.5342762990959644,
+   "feasible": true,
+   "pareto_rank": 4,
+   "crowding": 0.2654331631390073,
+   "objectives": {
+    "powder_kg_m3": 1010.0566104804806,
+    "cost_per_kg_powder": 0.10444026239329315,
+    "co2_per_kg_powder": 0.47443242685409415,
+    "cost_per_m3": 105.49057743066169,
+    "co2_per_m3": 479.20360897027484,
+    "clinker_fraction": 0.536284998524934,
+    "co2_per_mpa": 20.76945912636321,
+    "cost_per_mpa": 4.572132169185079
+   },
+   "summary": "portland_cement 0.54 / limestone_powder 0.25 / fly_ash_class_F 0.21; w/b 0.307; s/b 0.81; superplasticiser_pce 0.25%",
+   "analogues": [
+    {
+     "mix_uid": "10.1016/j.cemconcomp.2024.105869::M7",
+     "paper_uid": "10.1016/j.cemconcomp.2024.105869",
+     "doi": "10.1016/j.cemconcomp.2024.105869",
+     "title": "Rheology and early-age structure development of graphene-modified cementitious binders",
+     "year": 2025,
+     "is_3dcp": 1,
+     "mix_name": "F10L20 (C)[FGfam]",
+     "system_type": "paste",
+     "composition_summary": "opc 0.70 / limestone_powder 0.20 / fly_ash_f 0.10; w/b 0.32; sp_pce 0.25%",
+     "measured": [],
+     "target_distance": NaN,
+     "coverage": NaN,
+     "qualifier_penalty": 0.0,
+     "score": 0.6269536290685112,
+     "tier": "analogue",
+     "feature_distance": 0.4668826979126882,
+     "top_deviations": [
+      "pw_limestone_powder: analogue 0.2 vs candidate 0.251",
+      "cement_share: analogue 0.7 vs candidate 0.536",
+      "pw_fly_ash_f: analogue 0.1 vs candidate 0.212"
+     ]
+    },
+    {
+     "mix_uid": "10.1016/j.cemconcomp.2024.105869::M29",
+     "paper_uid": "10.1016/j.cemconcomp.2024.105869",
+     "doi": "10.1016/j.cemconcomp.2024.105869",
+     "title": "Rheology and early-age structure development of graphene-modified cementitious binders",
+     "year": 2025,
+     "is_3dcp": 1,
+     "mix_name": "F10L20 mortar (C)[FGfam]",
+     "system_type": "mortar",
+     "composition_summary": "opc 0.70 / limestone_powder 0.20 / fly_ash_f 0.10; w/b 0.32; sp_pce 0.25%",
+     "measured": [
+      {
+       "quantity": "compressive_strength",
+       "value": 18.0,
+       "unit": "MPa",
+       "age_d": 1.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 26.5,
+       "unit": "MPa",
+       "age_d": 2.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 35.0,
+       "unit": "MPa",
+       "age_d": 3.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 37.0,
+       "unit": "MPa",
+       "age_d": 7.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 40.666666666666664,
+       "unit": "MPa",
+       "age_d": 14.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 44.333333333333336,
+       "unit": "MPa",
+       "age_d": 21.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      },
+      {
+       "quantity": "compressive_strength",
+       "value": 48.0,
+       "unit": "MPa",
+       "age_d": 28.0,
+       "comparability_group": null,
+       "rest_time_s": null
+      }
+     ],
+     "target_distance": NaN,
+     "coverage": NaN,
+     "qualifier_penalty": 0.0,
+     "score": 0.6269536290685112,
+     "tier": "analogue",
+     "feature_distance": 0.4668826979126882,
+     "top_deviations": [
+      "pw_limestone_powder: analogue 0.2 vs candidate 0.251",
+      "cement_share: analogue 0.7 vs candidate 0.536",
+      "pw_fly_ash_f: analogue 0.1 vs candidate 0.212"
+     ]
+    },
+    {
+     "mix_uid": "10.1016/j.cemconcomp.2024.105869::M19",
+     "paper_uid": "10.1016/j.cemconcomp.2024.105869",
+     "doi": "10.1016/j.cemconcomp.2024.105869",
+     "title": "Rheology and early-age structure development of graphene-modified cementitious binders",
+     "year": 2025,
+     "is_3dcp": 1,
+     "mix_name": "F10L20 (C)[RGfam]",
+     "system_type": "paste",
+     "composition_summary": "opc 0.70 / limestone_powder 0.20 / fly_ash_f 0.10; w/b 0.32; sp_pce 0.15%",
+     "measured": [],
+     "target_distance": NaN,
+     "coverage": NaN,
+     "qualifier_penalty": 0.0,
+     "score": 0.6269536285357815,
+     "tier": "analogue",
+     "feature_distance": 0.46688269876239963,
+     "top_deviations": [
+      "pw_limestone_powder: analogue 0.2 vs candidate 0.251",
+      "cement_share: analogue 0.7 vs candidate 0.536",
+      "pw_fly_ash_f: analogue 0.1 vs candidate 0.212"
+     ]
+    }
+   ],
+   "refined": "False"
+  }
+ ],
+ "literature": [
+  {
+   "mix_uid": "10.1016/j.istruc.2025.110861::M1",
+   "paper_uid": "10.1016/j.istruc.2025.110861",
+   "doi": "10.1016/j.istruc.2025.110861",
+   "title": "Development of hydraulic high-performance engineered cementitious composite (HHP-ECC) incorporating LC3 composites for freeze-thaw and abrasion resistance",
+   "year": 2025,
+   "is_3dcp": 0,
+   "mix_name": "Ref",
+   "system_type": "mortar",
+   "composition_summary": "opc 0.88 / silica_fume 0.12; w/b 0.19; s/b 0.30; sp_pce 1.75%, expansive 2.00%, other_admix 0.30%; fibre 1.75 vol%",
+   "measured": [
+    {
+     "quantity": "compressive_strength",
+     "value": 110.2,
+     "unit": "MPa",
+     "age_d": 28.0,
+     "comparability_group": "comp_prism40",
+     "rest_time_s": null
+    },
+    {
+     "quantity": "shear_stress_at_rate@50/s",
+     "value": 240.0,
+     "unit": "Pa",
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": 50
+    },
+    {
+     "quantity": "shear_stress_at_rate@150/s",
+     "value": 710.0,
+     "unit": "Pa",
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": 150
+    }
+   ],
+   "target_distance": 1.0,
+   "coverage": 0.75,
+   "qualifier_penalty": 0.7,
+   "score": 0.1511219012789953,
+   "tier": "near",
+   "feature_distance": null,
+   "top_deviations": []
+  },
+  {
+   "mix_uid": "10.1016/j.jobe.2025.113480::M1",
+   "paper_uid": "10.1016/j.jobe.2025.113480",
+   "doi": "10.1016/j.jobe.2025.113480",
+   "title": "Effect of aluminum sulfate accelerator on rheology, hydration and printability of 3D-printed white cementitious materials",
+   "year": 2025,
+   "is_3dcp": 1,
+   "mix_name": "AS0",
+   "system_type": "mortar",
+   "composition_summary": "opc 0.91 / silica_fume 0.09; w/b 0.36; s/b 0.18; sp_other 0.27%, vma 0.09%, clay_modifier 0.45%",
+   "measured": [
+    {
+     "quantity": "compressive_strength",
+     "value": 40.27,
+     "unit": "MPa",
+     "age_d": 3.0,
+     "comparability_group": "comp_prism40",
+     "rest_time_s": null
+    },
+    {
+     "quantity": "compressive_strength",
+     "value": 49.0,
+     "unit": "MPa",
+     "age_d": 7.0,
+     "comparability_group": "comp_prism40",
+     "rest_time_s": null
+    },
+    {
+     "quantity": "shear_stress_at_rate@50/s",
+     "value": 355.0,
+     "unit": "Pa",
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": 50
+    },
+    {
+     "quantity": "static_yield_stress_at_rest@1200s",
+     "value": 1623.0,
+     "unit": "Pa",
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": 1200
+    }
+   ],
+   "target_distance": 1.4142135623730951,
+   "coverage": 0.5,
+   "qualifier_penalty": 0.0,
+   "score": 0.1458700406605285,
+   "tier": "near",
+   "feature_distance": null,
+   "top_deviations": []
+  },
+  {
+   "mix_uid": "10.1016/j.jobe.2026.116405::M1",
+   "paper_uid": "10.1016/j.jobe.2026.116405",
+   "doi": "10.1016/j.jobe.2026.116405",
+   "title": "Rheology, printability and mechanical performance of 3D-printed alkali-activated slag-steel-slag-fly-ash ternary mortar",
+   "year": 2026,
+   "is_3dcp": 1,
+   "mix_name": "Ms06/GGBFS50",
+   "system_type": "mortar",
+   "composition_summary": "ggbfs 0.50 / fly_ash_f 0.40 / slag_other 0.10; w/b 0.37; s/b 1.50; retarder 1.00%; activator 0.09/b",
+   "measured": [
+    {
+     "quantity": "compressive_strength",
+     "value": 27.7,
+     "unit": "MPa",
+     "age_d": 7.0,
+     "comparability_group": "comp_cube50",
+     "rest_time_s": null
+    },
+    {
+     "quantity": "compressive_strength",
+     "value": 42.8,
+     "unit": "MPa",
+     "age_d": 28.0,
+     "comparability_group": "comp_cube50",
+     "rest_time_s": null
+    },
+    {
+     "quantity": "static_yield_stress_at_rest@1200s",
+     "value": 1750.0,
+     "unit": "Pa",
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": 1200
+    }
+   ],
+   "target_distance": 1.4142135623730951,
+   "coverage": 0.5,
+   "qualifier_penalty": 0.0,
+   "score": 0.1458700406605285,
+   "tier": "near",
+   "feature_distance": null,
+   "top_deviations": []
+  },
+  {
+   "mix_uid": "10.1016/j.jobe.2025.114496::M2",
+   "paper_uid": "10.1016/j.jobe.2025.114496",
+   "doi": "10.1016/j.jobe.2025.114496",
+   "title": "Multi-scale correlation mechanism of mechanical properties for sustainable ultra-high strength mortar",
+   "year": 2025,
+   "is_3dcp": 0,
+   "mix_name": "0.1SF0.23W",
+   "system_type": "mortar",
+   "composition_summary": "opc 0.60 / limestone_powder 0.30 / silica_fume 0.10; w/b 0.23; s/b 0.36; sp_pce 2.00%, other_admix 0.02%",
+   "measured": [
+    {
+     "quantity": "shear_stress_at_rate@50/s",
+     "value": 237.0,
+     "unit": "Pa",
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": 50
+    },
+    {
+     "quantity": "shear_stress_at_rate@150/s",
+     "value": 1027.0,
+     "unit": "Pa",
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": 150
+    }
+   ],
+   "target_distance": 1.4142135623730951,
+   "coverage": 0.5,
+   "qualifier_penalty": 0.0,
+   "score": 0.1215583672171071,
+   "tier": "near",
+   "feature_distance": null,
+   "top_deviations": []
+  },
+  {
+   "mix_uid": "10.1016/j.cemconcomp.2026.106741::M6",
+   "paper_uid": "10.1016/j.cemconcomp.2026.106741",
+   "doi": "10.1016/j.cemconcomp.2026.106741",
+   "title": "Effect of matrix rheology on tensile behaviour, fibre distribution and pore structure of PE fibre reinforced FA-GGBS engineered geopolymer composites",
+   "year": 2026,
+   "is_3dcp": 0,
+   "mix_name": "F70-Ms0-20",
+   "system_type": "mortar",
+   "composition_summary": "fly_ash_f 0.70 / ggbfs 0.30; w/b 0.30; s/b 0.20; sp_pce 1.00%, retarder 0.10%; fibre 1.50 vol%; activator 0.06/b",
+   "measured": [
+    {
+     "quantity": "compressive_strength",
+     "value": 18.4,
+     "unit": "MPa",
+     "age_d": 28.0,
+     "comparability_group": "comp_cube50",
+     "rest_time_s": null
+    },
+    {
+     "quantity": "shear_stress_at_rate@50/s",
+     "value": 260.0,
+     "unit": "Pa",
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": 50
+    }
+   ],
+   "target_distance": 1.5798387746020186,
+   "coverage": 0.5,
+   "qualifier_penalty": 0.0,
+   "score": 0.1030041546496149,
+   "tier": "near",
+   "feature_distance": null,
+   "top_deviations": []
+  },
+  {
+   "mix_uid": "10.1016/j.cemconcomp.2021.104158::M7",
+   "paper_uid": "10.1016/j.cemconcomp.2021.104158",
+   "doi": "10.1016/j.cemconcomp.2021.104158",
+   "title": "Effect of hydroxypropyl methylcellulose and silica fume on stability, rheological properties, and printability of 3D printing foam concrete",
+   "year": 2021,
+   "is_3dcp": 1,
+   "mix_name": "M3",
+   "system_type": "mortar",
+   "composition_summary": "opc 0.84 / silica_fume 0.16; w/b 0.35; s/b 1.00",
+   "measured": [
+    {
+     "quantity": "compressive_strength",
+     "value": 19.15,
+     "unit": "MPa",
+     "age_d": 3.0,
+     "comparability_group": null,
+     "rest_time_s": null
+    },
+    {
+     "quantity": "compressive_strength",
+     "value": 21.25,
+     "unit": "MPa",
+     "age_d": 7.0,
+     "comparability_group": null,
+     "rest_time_s": null
+    },
+    {
+     "quantity": "compressive_strength",
+     "value": 22.5,
+     "unit": "MPa",
+     "age_d": 14.0,
+     "comparability_group": null,
+     "rest_time_s": null
+    },
+    {
+     "quantity": "compressive_strength",
+     "value": 23.75,
+     "unit": "MPa",
+     "age_d": 21.0,
+     "comparability_group": null,
+     "rest_time_s": null
+    },
+    {
+     "quantity": "compressive_strength",
+     "value": 25.0,
+     "unit": "MPa",
+     "age_d": 28.0,
+     "comparability_group": null,
+     "rest_time_s": null
+    },
+    {
+     "quantity": "shear_stress_at_rate@50/s",
+     "value": 269.34,
+     "unit": "Pa",
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": 50
+    }
+   ],
+   "target_distance": 1.476467872681073,
+   "coverage": 0.5,
+   "qualifier_penalty": 0.5,
+   "score": 0.09692022255830825,
+   "tier": "near",
+   "feature_distance": null,
+   "top_deviations": []
+  },
+  {
+   "mix_uid": "10.1016/j.jobe.2025.113480::M3",
+   "paper_uid": "10.1016/j.jobe.2025.113480",
+   "doi": "10.1016/j.jobe.2025.113480",
+   "title": "Effect of aluminum sulfate accelerator on rheology, hydration and printability of 3D-printed white cementitious materials",
+   "year": 2025,
+   "is_3dcp": 1,
+   "mix_name": "AS2",
+   "system_type": "mortar",
+   "composition_summary": "opc 0.91 / silica_fume 0.09; w/b 0.36; s/b 0.18; sp_other 0.27%, vma 0.09%, clay_modifier 0.45%",
+   "measured": [
+    {
+     "quantity": "compressive_strength",
+     "value": 47.79,
+     "unit": "MPa",
+     "age_d": 3.0,
+     "comparability_group": "comp_prism40",
+     "rest_time_s": null
+    },
+    {
+     "quantity": "compressive_strength",
+     "value": 53.03,
+     "unit": "MPa",
+     "age_d": 7.0,
+     "comparability_group": "comp_prism40",
+     "rest_time_s": null
+    },
+    {
+     "quantity": "shear_stress_at_rate@50/s",
+     "value": 575.0,
+     "unit": "Pa",
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": 50
+    },
+    {
+     "quantity": "static_yield_stress_at_rest@1200s",
+     "value": 1811.5,
+     "unit": "Pa",
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": 1200
+    }
+   ],
+   "target_distance": 1.4142135623730951,
+   "coverage": 0.5,
+   "qualifier_penalty": 0.0,
+   "score": 0.0875220243963171,
+   "tier": "near",
+   "feature_distance": null,
+   "top_deviations": []
+  },
+  {
+   "mix_uid": "10.1016/j.jobe.2025.114496::M4",
+   "paper_uid": "10.1016/j.jobe.2025.114496",
+   "doi": "10.1016/j.jobe.2025.114496",
+   "title": "Multi-scale correlation mechanism of mechanical properties for sustainable ultra-high strength mortar",
+   "year": 2025,
+   "is_3dcp": 0,
+   "mix_name": "0.3SF0.23W",
+   "system_type": "mortar",
+   "composition_summary": "opc 0.60 / silica_fume 0.30 / limestone_powder 0.10; w/b 0.23; s/b 0.36; sp_pce 2.00%, other_admix 0.02%",
+   "measured": [
+    {
+     "quantity": "shear_stress_at_rate@50/s",
+     "value": 650.0,
+     "unit": "Pa",
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": 50
+    },
+    {
+     "quantity": "shear_stress_at_rate@150/s",
+     "value": 1420.0,
+     "unit": "Pa",
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": 150
+    }
+   ],
+   "target_distance": 1.4142135623730951,
+   "coverage": 0.5,
+   "qualifier_penalty": 0.0,
+   "score": 0.07293502033026425,
+   "tier": "near",
+   "feature_distance": null,
+   "top_deviations": []
+  },
+  {
+   "mix_uid": "10.1016/j.jobe.2026.116405::M6",
+   "paper_uid": "10.1016/j.jobe.2026.116405",
+   "doi": "10.1016/j.jobe.2026.116405",
+   "title": "Rheology, printability and mechanical performance of 3D-printed alkali-activated slag-steel-slag-fly-ash ternary mortar",
+   "year": 2026,
+   "is_3dcp": 1,
+   "mix_name": "GGBFS30",
+   "system_type": "mortar",
+   "composition_summary": "fly_ash_f 0.60 / ggbfs 0.30 / slag_other 0.10; w/b 0.37; s/b 1.50; retarder 1.00%; activator 0.09/b",
+   "measured": [
+    {
+     "quantity": "compressive_strength",
+     "value": 17.8,
+     "unit": "MPa",
+     "age_d": 7.0,
+     "comparability_group": "comp_cube50",
+     "rest_time_s": null
+    },
+    {
+     "quantity": "compressive_strength",
+     "value": 22.2,
+     "unit": "MPa",
+     "age_d": 28.0,
+     "comparability_group": "comp_cube50",
+     "rest_time_s": null
+    },
+    {
+     "quantity": "static_yield_stress_at_rest@1200s",
+     "value": 1130.0,
+     "unit": "Pa",
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": 1200
+    }
+   ],
+   "target_distance": 1.617238942377943,
+   "coverage": 0.5,
+   "qualifier_penalty": 0.0,
+   "score": 0.07144051097671093,
+   "tier": "near",
+   "feature_distance": null,
+   "top_deviations": []
+  },
+  {
+   "mix_uid": "10.1016/j.istruc.2025.110861::M4",
+   "paper_uid": "10.1016/j.istruc.2025.110861",
+   "doi": "10.1016/j.istruc.2025.110861",
+   "title": "Development of hydraulic high-performance engineered cementitious composite (HHP-ECC) incorporating LC3 composites for freeze-thaw and abrasion resistance",
+   "year": 2025,
+   "is_3dcp": 0,
+   "mix_name": "LC3-45",
+   "system_type": "mortar",
+   "composition_summary": "opc 0.48 / calcined_clay 0.25 / limestone_powder 0.13 / silica_fume 0.12; w/b 0.19; s/b 0.30; sp_pce 1.75%, expansive 2.00%, other_admix 0.30%; fibre 1.75 vol%",
+   "measured": [
+    {
+     "quantity": "compressive_strength",
+     "value": 92.7,
+     "unit": "MPa",
+     "age_d": 28.0,
+     "comparability_group": "comp_prism40",
+     "rest_time_s": null
+    },
+    {
+     "quantity": "shear_stress_at_rate@50/s",
+     "value": 125.0,
+     "unit": "Pa",
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": 50
+    },
+    {
+     "quantity": "shear_stress_at_rate@150/s",
+     "value": 415.0,
+     "unit": "Pa",
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": 150
+    }
+   ],
+   "target_distance": 1.3102750961979708,
+   "coverage": 0.75,
+   "qualifier_penalty": 0.7,
+   "score": 0.0664856466425546,
+   "tier": "near",
+   "feature_distance": null,
+   "top_deviations": []
+  },
+  {
+   "mix_uid": "10.1016/j.jobe.2025.114496::M6",
+   "paper_uid": "10.1016/j.jobe.2025.114496",
+   "doi": "10.1016/j.jobe.2025.114496",
+   "title": "Multi-scale correlation mechanism of mechanical properties for sustainable ultra-high strength mortar",
+   "year": 2025,
+   "is_3dcp": 0,
+   "mix_name": "0.2SF0.21W",
+   "system_type": "mortar",
+   "composition_summary": "opc 0.60 / silica_fume 0.20 / limestone_powder 0.20; w/b 0.21; s/b 0.36; sp_pce 2.00%, other_admix 0.02%",
+   "measured": [
+    {
+     "quantity": "shear_stress_at_rate@50/s",
+     "value": 405.0,
+     "unit": "Pa",
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": 50
+    },
+    {
+     "quantity": "shear_stress_at_rate@150/s",
+     "value": 1526.0,
+     "unit": "Pa",
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": 150
+    }
+   ],
+   "target_distance": 1.4142135623730951,
+   "coverage": 0.5,
+   "qualifier_penalty": 0.0,
+   "score": 0.043761012198158554,
+   "tier": "near",
+   "feature_distance": null,
+   "top_deviations": []
+  },
+  {
+   "mix_uid": "10.1016/j.istruc.2025.110861::M3",
+   "paper_uid": "10.1016/j.istruc.2025.110861",
+   "doi": "10.1016/j.istruc.2025.110861",
+   "title": "Development of hydraulic high-performance engineered cementitious composite (HHP-ECC) incorporating LC3 composites for freeze-thaw and abrasion resistance",
+   "year": 2025,
+   "is_3dcp": 0,
+   "mix_name": "LC3-30",
+   "system_type": "mortar",
+   "composition_summary": "opc 0.62 / calcined_clay 0.17 / silica_fume 0.12 / limestone_powder 0.08; w/b 0.19; s/b 0.30; sp_pce 1.75%, expansive 2.00%, other_admix 0.30%; fibre 1.75 vol%",
+   "measured": [
+    {
+     "quantity": "compressive_strength",
+     "value": 111.3,
+     "unit": "MPa",
+     "age_d": 28.0,
+     "comparability_group": "comp_prism40",
+     "rest_time_s": null
+    },
+    {
+     "quantity": "shear_stress_at_rate@50/s",
+     "value": 107.5,
+     "unit": "Pa",
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": 50
+    },
+    {
+     "quantity": "shear_stress_at_rate@150/s",
+     "value": 335.0,
+     "unit": "Pa",
+     "age_d": null,
+     "comparability_group": null,
+     "rest_time_s": 150
+    }
+   ],
+   "target_distance": 1.4458091595074316,
+   "coverage": 0.75,
+   "qualifier_penalty": 0.7,
+   "score": 0.034835131287994085,
+   "tier": "near",
+   "feature_distance": null,
+   "top_deviations": []
+  }
+ ],
+ "diagnostics": {
+  "n_sampled": 8192,
+  "n_feasible": 7947,
+  "t_stage1_s": 11.4,
+  "n_shortlist": 6,
+  "t_stage2_s": 28.2,
+  "n_final": 12,
+  "evaluator_calls": 77,
+  "t_total_s": 99.5,
+  "weak_models": [
+   "structuration_rate_athix",
+   "static_yield_stress_at_rest"
+  ]
+ },
+ "warnings": []
+}

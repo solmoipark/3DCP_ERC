@@ -1,0 +1,26 @@
+# python
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+
+# scratch / local
+.claude/
+%TEMP%/
+out.txt
+manifest_redig04.txt
+redig04_*.json
+wb_redig04.xlsx
+*.tmp
+
+# large / regenerable
+data/raw/measurements.parquet
+data/raw/mix_components.parquet
+data/raw/test_protocols.parquet
+data/raw/material_chemistry.parquet
+data/raw/material_physical.parquet
+data/composition_qa.csv
+artifacts/reports/oof_*.parquet
+artifacts/reports/design/closed_loop*.csv

@@ -1,0 +1,797 @@
+{
+ "target": "plastic_viscosity",
+ "variant": "3dcp",
+ "unit": "Pa.s",
+ "n_train": 299,
+ "n_mixes": 270,
+ "n_papers": 42,
+ "tier": "small",
+ "params": {
+  "learning_rate": 0.05,
+  "num_leaves": 7,
+  "min_child_samples": 10,
+  "feature_fraction": 0.8,
+  "bagging_fraction": 0.8,
+  "bagging_freq": 1,
+  "lambda_l2": 2.0,
+  "max_depth": 4,
+  "n_estimators": 30,
+  "min_data_per_group": 10,
+  "cat_smooth": 20
+ },
+ "transform": "log",
+ "feature_schema_hash": "46fc6fc1a95b98db",
+ "featurizer_version": "1.0",
+ "package_version": "0.1.0",
+ "created": "2026-09-10T04:03:53+00:00",
+ "cv": {
+  "n": 299,
+  "rmse": 61.41898922542301,
+  "mae": 23.466172013012773,
+  "r2": -0.07105630458568735,
+  "medape": 0.8231808183927775,
+  "spearman": 0.3195533485957693,
+  "coverage_raw": 0.5585284280936454,
+  "coverage_conformal": 0.7993311036789298,
+  "rel_width": 10.123758312025828,
+  "conformal_scale": 1.9122971303529706,
+  "best_iter_median": 30,
+  "rmse_t": 1.7183361826221875,
+  "r2_t": 0.11383742782390127,
+  "ridge_r2": -2.772416628879376,
+  "ridge_rmse": 115.26735807946739,
+  "knn_r2": -0.15392317363029817
+ },
+ "feature_ranges": {
+  "pw_opc": [
+   0.0,
+   1.0
+  ],
+  "pw_csa": [
+   0.0,
+   1.0
+  ],
+  "pw_cac": [
+   0.0,
+   0.0
+  ],
+  "pw_cement_other": [
+   0.0,
+   0.0
+  ],
+  "pw_ggbfs": [
+   0.0,
+   1.0
+  ],
+  "pw_fly_ash_f": [
+   0.0,
+   1.0
+  ],
+  "pw_fly_ash_c": [
+   0.0,
+   0.0
+  ],
+  "pw_silica_fume": [
+   0.0,
+   0.2623819898329694
+  ],
+  "pw_metakaolin": [
+   0.0,
+   0.020182524271844495
+  ],
+  "pw_calcined_clay": [
+   0.0,
+   0.335340916590282
+  ],
+  "pw_limestone_powder": [
+   0.0,
+   0.23246632124352207
+  ],
+  "pw_quartz_powder": [
+   0.0,
+   0.01477832512315271
+  ],
+  "pw_inert_filler_other": [
+   0.0,
+   0.0
+  ],
+  "pw_gypsum_sulfate": [
+   0.0,
+   0.0
+  ],
+  "pw_lime": [
+   0.0,
+   0.00039937177473600656
+  ],
+  "pw_magnesia": [
+   0.0,
+   0.0
+  ],
+  "pw_slag_other": [
+   0.0,
+   0.29105999999999993
+  ],
+  "pw_glass_powder": [
+   0.0,
+   0.0
+  ],
+  "pw_natural_pozzolan": [
+   0.0,
+   0.0
+  ],
+  "pw_ash_other": [
+   0.0,
+   0.001999999999998181
+  ],
+  "pw_recycled_powder": [
+   0.0,
+   0.225
+  ],
+  "pw_industrial_residue": [
+   0.0,
+   0.0
+  ],
+  "pw_other_powder": [
+   0.0,
+   0.8113266480355077
+  ],
+  "water_b": [
+   0.14,
+   0.501225
+  ],
+  "log_water_b": [
+   -1.9661128563728327,
+   -0.6907057157521963
+  ],
+  "sand_b": [
+   0.18181818181818182,
+   1.6092706560167607
+  ],
+  "filler_frac": [
+   0.0,
+   0.23246632124352207
+  ],
+  "cement_share": [
+   0.0,
+   1.0
+  ],
+  "scm_frac": [
+   0.0,
+   1.0
+  ],
+  "agg_natural_sand": [
+   0.0,
+   1.0
+  ],
+  "agg_standard_sand": [
+   0.0,
+   1.0
+  ],
+  "agg_silica_sand": [
+   0.0,
+   1.0
+  ],
+  "agg_crushed_sand": [
+   0.0,
+   1.0
+  ],
+  "agg_recycled_agg": [
+   0.0,
+   0.0
+  ],
+  "agg_lightweight_agg": [
+   0.0,
+   0.0
+  ],
+  "agg_glass_agg": [
+   0.0,
+   0.0
+  ],
+  "agg_rubber": [
+   0.0,
+   0.0
+  ],
+  "agg_other_agg": [
+   0.0,
+   0.15199999999999816
+  ],
+  "adx_sp_pce_pct": [
+   0.0,
+   3.0
+  ],
+  "adx_sp_other_pct": [
+   0.0,
+   0.2727272727272727
+  ],
+  "adx_vma_pct": [
+   0.0,
+   0.6239031095363023
+  ],
+  "adx_clay_modifier_pct": [
+   0.0,
+   1.9710344827586204
+  ],
+  "adx_accelerator_pct": [
+   0.0,
+   1.0
+  ],
+  "adx_retarder_pct": [
+   0.0,
+   3.5000000000000004
+  ],
+  "adx_sap_pct": [
+   0.0,
+   0.0
+  ],
+  "adx_aea_pct": [
+   0.0,
+   0.0
+  ],
+  "adx_defoamer_pct": [
+   0.0,
+   0.2727272727272727
+  ],
+  "adx_sra_pct": [
+   0.0,
+   0.0
+  ],
+  "adx_expansive_pct": [
+   0.0,
+   3.0
+  ],
+  "adx_polymer_pct": [
+   0.0,
+   0.0
+  ],
+  "adx_water_repellent_pct": [
+   0.0,
+   0.0
+  ],
+  "adx_other_admix_pct": [
+   0.0,
+   3.012727272727261
+  ],
+  "sp_solid_pct": [
+   0.0,
+   1.0011466123594543
+  ],
+  "vma_solid_pct": [
+   0.0,
+   2.2522906403940866
+  ],
+  "fib_steel_vol": [
+   0.0,
+   0.0
+  ],
+  "fib_pp_vol": [
+   0.0,
+   0.0
+  ],
+  "fib_pe_vol": [
+   0.0,
+   0.0
+  ],
+  "fib_pva_vol": [
+   0.0,
+   1.4024826189761
+  ],
+  "fib_glass_vol": [
+   0.0,
+   0.0
+  ],
+  "fib_basalt_vol": [
+   0.0,
+   0.0
+  ],
+  "fib_carbon_vol": [
+   0.0,
+   0.0
+  ],
+  "fib_natural_vol": [
+   0.0,
+   0.0
+  ],
+  "fib_other_fibre_vol": [
+   0.0,
+   0.0
+  ],
+  "fibre_total_vol_pct": [
+   0.0,
+   1.4024826189761
+  ],
+  "fibre_total_mass_b": [
+   0.0,
+   0.015000085568086529
+  ],
+  "act_naoh": [
+   0.0,
+   0.06403352383808096
+  ],
+  "act_koh": [
+   0.0,
+   0.0
+  ],
+  "act_sodium_silicate": [
+   0.0,
+   0.4738
+  ],
+  "act_potassium_silicate": [
+   0.0,
+   0.0
+  ],
+  "act_sodium_carbonate": [
+   0.0,
+   0.0
+  ],
+  "act_sodium_sulfate": [
+   0.0,
+   0.0
+  ],
+  "act_other_activator": [
+   0.0,
+   0.23009999999999992
+  ],
+  "act_total_b": [
+   0.0,
+   0.51
+  ],
+  "naoh_molarity": [
+   0.0,
+   3.0
+  ],
+  "nano_nano_silica_pct": [
+   0.0,
+   0.0
+  ],
+  "nano_nano_caco3_pct": [
+   0.0,
+   0.0
+  ],
+  "nano_nano_clay_pct": [
+   0.0,
+   1.9607843137254901
+  ],
+  "nano_cnt_pct": [
+   0.0,
+   0.0
+  ],
+  "nano_graphene_pct": [
+   0.0,
+   0.0
+  ],
+  "nano_csh_seed_pct": [
+   0.0,
+   0.0
+  ],
+  "nano_nano_other_pct": [
+   0.0,
+   0.22045999999999874
+  ],
+  "nano_total_pct": [
+   0.0,
+   1.9615686274509796
+  ],
+  "other_frac": [
+   0.0,
+   0.0
+  ],
+  "total_solids_b": [
+   1.0,
+   2.6157659025665843
+  ],
+  "wb_source_reported": [
+   0.0,
+   1.0
+  ],
+  "sb_source_reported": [
+   0.0,
+   1.0
+  ],
+  "mode_parts": [
+   0.0,
+   1.0
+  ],
+  "binder_sum_deviates": [
+   0.0,
+   1.0
+  ],
+  "cement_share_proxy": [
+   0.0,
+   1.0
+  ],
+  "ox_SiO2": [
+   7.4107,
+   55.7
+  ],
+  "ox_Al2O3": [
+   0.46885569620253165,
+   34.067959999999985
+  ],
+  "ox_Fe2O3": [
+   0.18818181818181817,
+   8.544123599999997
+  ],
+  "ox_CaO": [
+   1.3387999999999998,
+   66.59
+  ],
+  "ox_MgO": [
+   0.7600111148309339,
+   74.03619743547581
+  ],
+  "ox_SO3": [
+   0.06,
+   16.559019999999972
+  ],
+  "ox_K2O": [
+   0.08000000000000002,
+   2.8
+  ],
+  "ox_Na2O": [
+   0.02519,
+   0.86
+  ],
+  "ox_TiO2": [
+   0.15636363636363637,
+   2.104
+  ],
+  "ox_P2O5": [
+   0.02372,
+   6.72750999999994
+  ],
+  "ox_LOI": [
+   0.09,
+   11.518935440414465
+  ],
+  "chem_coverage": [
+   0.0,
+   1.0000000000000002
+  ],
+  "chem_imputed_frac": [
+   0.0,
+   1.0
+  ],
+  "blaine_m2kg": [
+   364.5,
+   1154.0
+  ],
+  "d50_um": [
+   0.9245,
+   57.05680000000381
+  ],
+  "sg_powder": [
+   2.2383900000000003,
+   3.15
+  ],
+  "bet_m2g": [
+   1.0398,
+   19.0
+  ],
+  "agg_fm": [
+   2.1,
+   2.8372
+  ],
+  "agg_dmax_mm": [
+   0.6,
+   3.25
+  ],
+  "agg_wabs_pct": [
+   0.75,
+   1.8151270000000017
+  ],
+  "agg_sg": [
+   2.6,
+   2.66
+  ],
+  "fibre_length_mm": [
+   0.012,
+   12.0
+  ],
+  "fibre_diameter_um": [
+   28.18,
+   40.0
+  ],
+  "fibre_tensile_MPa": [
+   342.95,
+   1600.0
+  ],
+  "fibre_emod_GPa": [
+   4.5,
+   41.0
+  ],
+  "ca_si": [
+   0.043197000094243695,
+   5.771956620652272
+  ],
+  "al_si": [
+   0.015985740642336817,
+   2.778145079207373
+  ],
+  "hydraulic_modulus": [
+   0.5745062836624776,
+   9.004742771982102
+  ],
+  "alkali_eq": [
+   0.4592836246913581,
+   2.4674
+  ],
+  "log_d50_um": [
+   -0.07850222815495753,
+   3.9664642891543678
+  ],
+  "fibre_aspect": [
+   0.3,
+   425.83392476933994
+  ],
+  "phys_coverage": [
+   0.0,
+   1.0
+  ],
+  "phys_imputed_frac": [
+   0.0,
+   1.0000000000000002
+  ],
+  "act_solids_b": [
+   0.0,
+   0.23009999999999992
+  ],
+  "act_na2o_pct": [
+   0.0,
+   9.253727315801033
+  ],
+  "act_sio2_pct": [
+   0.0,
+   12.502867684198968
+  ],
+  "act_ms_eff": [
+   0.0,
+   1.9999999999999998
+  ],
+  "act_water_b": [
+   0.0,
+   0.28428
+  ],
+  "act_solid_assumed": [
+   0.0,
+   1.0
+  ],
+  "water_total_b": [
+   0.14,
+   0.501225
+  ],
+  "w_solids_total": [
+   0.11365985319772227,
+   0.501225
+  ],
+  "curing_temp_C": [
+   -2.0,
+   23.0
+  ],
+  "curing_rh_pct": [
+   65.0,
+   100.0
+  ],
+  "is_3dcp": [
+   1.0,
+   1.0
+  ],
+  "year": [
+   2018.0,
+   2026.0
+  ],
+  "heat_cured": [
+   0.0,
+   0.0
+  ]
+ },
+ "age_support": {
+  "min": 0.0104,
+  "max": 0.0729,
+  "common": [
+   0.0104,
+   0.0208,
+   0.0312,
+   0.042,
+   0.0521,
+   0.0625,
+   0.0729
+  ]
+ },
+ "categorical_levels": {
+  "curing_type": [
+   "water",
+   "moist",
+   "sealed",
+   "ambient",
+   "heat",
+   "autoclave",
+   "unknown"
+  ],
+  "system_type": [
+   "paste",
+   "mortar",
+   "unknown"
+  ],
+  "binder_family": [
+   "opc",
+   "blended",
+   "lc3",
+   "aam",
+   "csa",
+   "cac",
+   "mgo",
+   "sulfate",
+   "other_binder"
+  ]
+ },
+ "covariates": [],
+ "train_time_s": 1.8,
+ "feature_names": [
+  "pw_opc",
+  "pw_csa",
+  "pw_cac",
+  "pw_cement_other",
+  "pw_ggbfs",
+  "pw_fly_ash_f",
+  "pw_fly_ash_c",
+  "pw_silica_fume",
+  "pw_metakaolin",
+  "pw_calcined_clay",
+  "pw_limestone_powder",
+  "pw_quartz_powder",
+  "pw_inert_filler_other",
+  "pw_gypsum_sulfate",
+  "pw_lime",
+  "pw_magnesia",
+  "pw_slag_other",
+  "pw_glass_powder",
+  "pw_natural_pozzolan",
+  "pw_ash_other",
+  "pw_recycled_powder",
+  "pw_industrial_residue",
+  "pw_other_powder",
+  "water_b",
+  "log_water_b",
+  "sand_b",
+  "filler_frac",
+  "cement_share",
+  "scm_frac",
+  "agg_natural_sand",
+  "agg_standard_sand",
+  "agg_silica_sand",
+  "agg_crushed_sand",
+  "agg_recycled_agg",
+  "agg_lightweight_agg",
+  "agg_glass_agg",
+  "agg_rubber",
+  "agg_other_agg",
+  "adx_sp_pce_pct",
+  "adx_sp_other_pct",
+  "adx_vma_pct",
+  "adx_clay_modifier_pct",
+  "adx_accelerator_pct",
+  "adx_retarder_pct",
+  "adx_sap_pct",
+  "adx_aea_pct",
+  "adx_defoamer_pct",
+  "adx_sra_pct",
+  "adx_expansive_pct",
+  "adx_polymer_pct",
+  "adx_water_repellent_pct",
+  "adx_other_admix_pct",
+  "sp_solid_pct",
+  "vma_solid_pct",
+  "fib_steel_vol",
+  "fib_pp_vol",
+  "fib_pe_vol",
+  "fib_pva_vol",
+  "fib_glass_vol",
+  "fib_basalt_vol",
+  "fib_carbon_vol",
+  "fib_natural_vol",
+  "fib_other_fibre_vol",
+  "fibre_total_vol_pct",
+  "fibre_total_mass_b",
+  "act_naoh",
+  "act_koh",
+  "act_sodium_silicate",
+  "act_potassium_silicate",
+  "act_sodium_carbonate",
+  "act_sodium_sulfate",
+  "act_other_activator",
+  "act_total_b",
+  "naoh_molarity",
+  "nano_nano_silica_pct",
+  "nano_nano_caco3_pct",
+  "nano_nano_clay_pct",
+  "nano_cnt_pct",
+  "nano_graphene_pct",
+  "nano_csh_seed_pct",
+  "nano_nano_other_pct",
+  "nano_total_pct",
+  "other_frac",
+  "total_solids_b",
+  "wb_source_reported",
+  "sb_source_reported",
+  "mode_parts",
+  "binder_sum_deviates",
+  "cement_share_proxy",
+  "ox_SiO2",
+  "ox_Al2O3",
+  "ox_Fe2O3",
+  "ox_CaO",
+  "ox_MgO",
+  "ox_SO3",
+  "ox_K2O",
+  "ox_Na2O",
+  "ox_TiO2",
+  "ox_P2O5",
+  "ox_LOI",
+  "chem_coverage",
+  "chem_imputed_frac",
+  "blaine_m2kg",
+  "d50_um",
+  "sg_powder",
+  "bet_m2g",
+  "agg_fm",
+  "agg_dmax_mm",
+  "agg_wabs_pct",
+  "agg_sg",
+  "fibre_length_mm",
+  "fibre_diameter_um",
+  "fibre_tensile_MPa",
+  "fibre_emod_GPa",
+  "ca_si",
+  "al_si",
+  "hydraulic_modulus",
+  "alkali_eq",
+  "log_d50_um",
+  "fibre_aspect",
+  "phys_coverage",
+  "phys_imputed_frac",
+  "act_solids_b",
+  "act_na2o_pct",
+  "act_sio2_pct",
+  "act_ms_eff",
+  "act_water_b",
+  "act_solid_assumed",
+  "water_total_b",
+  "w_solids_total",
+  "curing_temp_C",
+  "curing_rh_pct",
+  "curing_type",
+  "is_3dcp",
+  "year",
+  "system_type",
+  "heat_cured",
+  "binder_family"
+ ],
+ "cat_levels": {
+  "curing_type": [
+   "water",
+   "moist",
+   "sealed",
+   "ambient",
+   "heat",
+   "autoclave",
+   "unknown"
+  ],
+  "system_type": [
+   "paste",
+   "mortar",
+   "unknown"
+  ],
+  "binder_family": [
+   "opc",
+   "blended",
+   "lc3",
+   "aam",
+   "csa",
+   "cac",
+   "mgo",
+   "sulfate",
+   "other_binder"
+  ]
+ },
+ "conformal_scale": 1.9122971303529706
+}

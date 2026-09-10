@@ -1,0 +1,10 @@
+# pmpredict pipeline configuration. Relative paths resolve from the project root.
+# Override the DB with --db on the CLI or the PMPREDICT_DB environment variable.
+# master.db is only needed for build-features / build-targets / train. Relative paths resolve from the repo root;
+# override with the PMPREDICT_DB environment variable or --db. The UI and predict/design work without it.
+db_path: "../pastemortar_extraction_package_v1.2.2/master/master.db"
+data_dir: data
+artifacts_dir: artifacts
+seed: 42
+use_mixing_protocol: false   # mix_time_s / max_rpm / mixer_type (29 % / 13 % / 63 % filled); tested 2026-09-09: no gain on rheology/flow targets
+paper_weighting: sqrt        # sqrt | none  (sample weight 1/sqrt(rows per paper))

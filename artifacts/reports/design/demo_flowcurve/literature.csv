@@ -1,0 +1,13 @@
+tier,score,doi,year,is_3dcp,mix,system_type,composition,target_distance,coverage,penalty,compressive_strength@28d,compressive_strength@3d,static_yield_stress_at_rest@1200s,shear_stress_at_rate@50/s
+near,0.053076361895329265,10.1016/j.addma.2020.101069,2020,1,Plain (fibre-free) mix,mortar,opc 1.00; w/b 0.31; s/b 1.20,1.7320508075688772,0.25,0.0,50.82,,,
+near,0.053076361895329265,10.1016/j.cemconcomp.2021.104060,2021,1,M5,mortar,ggbfs 0.50 / fly_ash_f 0.50; w/b 0.36; s/b 1.50; retarder 0.50%; activator 0.10/b,1.7320508075688772,0.25,0.0,,52.6,7700.0,
+near,0.053076361895329265,10.1016/j.cemconcomp.2021.104158,2021,1,N2,mortar,opc 1.00; w/b 0.35; s/b 1.00; vma 0.20%,1.7320508075688772,0.25,0.0,,,,277.65
+near,0.053076361895329265,10.1016/j.cemconcomp.2023.104960,2023,1,Mixture A (mortar),mortar,csa 1.00; w/b 0.35; s/b 1.20; retarder 1.99%,1.7320508075688772,0.25,0.0,,,,400.6470588235294
+near,0.053076361895329265,10.1016/j.cemconcomp.2024.105641,2024,1,LC3-ECC,mortar,"fly_ash_f 0.55 / opc 0.25 / calcined_clay 0.14 / limestone_powder 0.07; w/b 0.25; s/b 0.36; sp_pce 0.54%, vma 0.15%; fibre 2.25 vol%",1.7320508075688772,0.25,0.0,45.3,,,
+near,0.053076361895329265,10.1016/j.conbuildmat.2018.12.061,2019,1,S/C=0.6,mortar,"opc 0.98 / silica_fume 0.02; w/b 0.34; s/b 0.59; sp_pce 0.25%, vma 0.01%",1.7320508075688772,0.25,0.0,,,,465.0
+near,0.03184581713719756,10.1016/j.addma.2020.101069,2020,1,1% E6-glass fibre mix,mortar,opc 1.00; w/b 0.33; s/b 1.20; fibre 0.73 vol%,1.7320508075688772,0.25,0.0,51.92,,,
+near,0.03184581713719756,10.1016/j.cemconcomp.2021.104158,2021,1,N3,mortar,opc 1.00; w/b 0.35; s/b 1.00; vma 0.30%,1.7320508075688772,0.25,0.0,,,,357.57
+near,0.03184581713719756,10.1016/j.cemconcomp.2023.104960,2023,1,Mixture B0 (mortar),mortar,opc 1.00; w/b 0.35; s/b 1.20; sp_pce 0.60%,1.7320508075688772,0.25,0.0,,,,290.3636363636364
+near,0.03184581713719756,10.1016/j.conbuildmat.2018.12.061,2019,1,S/C=0.8,mortar,"opc 0.98 / silica_fume 0.02; w/b 0.34; s/b 0.78; sp_pce 0.25%, vma 0.01%",1.7320508075688772,0.25,0.0,,,,460.0
+near,0.019107490282318534,10.1016/j.cemconcomp.2021.104158,2021,1,M3,mortar,opc 0.84 / silica_fume 0.16; w/b 0.35; s/b 1.00,1.7320508075688772,0.25,0.0,,,,269.34
+near,0.019107490282318534,10.1016/j.cemconcomp.2023.104960,2023,1,Mixture B2 (mortar),mortar,opc 0.98 / lime 0.02; w/b 0.35; s/b 1.20; sp_pce 0.59%,1.7320508075688772,0.25,0.0,,,,331.72727272727275

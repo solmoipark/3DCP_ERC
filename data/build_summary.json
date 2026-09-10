@@ -1,0 +1,17 @@
+{
+ "n_mixes": 22599,
+ "n_normalised": 21650,
+ "modes": {
+  "abs": 9957,
+  "rel": 6381,
+  "parts": 4905,
+  "failed": 949,
+  "solids": 407
+ },
+ "n_features": 138,
+ "schema_hash": "46fc6fc1a95b98db",
+ "water_b_available": 0.8781062355658199,
+ "chem_coverage_ge_0p8": 0.7320554272517321,
+ "curing_known": 0.7140877598152425,
+ "seconds": 14.8
+}

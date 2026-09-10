@@ -1,0 +1,30 @@
+# LightGBM defaults by data-size tier, plus CV / uncertainty settings.
+tiers:
+  large:     # n_rows >= 3000
+    min_rows: 3000
+    params: {learning_rate: 0.03, num_leaves: 31, min_child_samples: 20, feature_fraction: 0.8,
+             bagging_fraction: 0.8, bagging_freq: 1, lambda_l2: 1.0, max_depth: -1, n_estimators: 3000}
+  medium:    # 800 <= n_rows < 3000
+    min_rows: 800
+    params: {learning_rate: 0.03, num_leaves: 15, min_child_samples: 15, feature_fraction: 0.8,
+             bagging_fraction: 0.8, bagging_freq: 1, lambda_l2: 1.0, max_depth: -1, n_estimators: 2000}
+  small:     # n_rows < 800 or n_papers < 30
+    min_rows: 0
+    params: {learning_rate: 0.05, num_leaves: 7, min_child_samples: 10, feature_fraction: 0.8,
+             bagging_fraction: 0.8, bagging_freq: 1, lambda_l2: 2.0, max_depth: 4, n_estimators: 600,
+             min_data_per_group: 10, cat_smooth: 20}
+small_paper_threshold: 30
+early_stopping_rounds: 50
+inner_val_fraction: 0.10
+quantiles: [0.10, 0.90]
+interval_coverage: 0.80
+bootstrap_ensemble: 10
+cv_folds: 5
+min_papers_for_cv: 10
+# random-search space for --tune (20 draws)
+tune:
+  n_draws: 20
+  num_leaves: [7, 15, 31, 63]
+  min_child_samples: [5, 10, 20, 40]
+  feature_fraction: [0.6, 0.8, 1.0]
+  lambda_l2: [0.0, 1.0, 5.0]

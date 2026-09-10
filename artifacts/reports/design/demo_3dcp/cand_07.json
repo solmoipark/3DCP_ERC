@@ -1,0 +1,66 @@
+{
+  "system_type": "mortar",
+  "components": [
+    {
+      "material_class": "portland_cement",
+      "amount": 0.8212174871470779,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+    },
+    {
+      "material_class": "limestone_powder",
+      "amount": 0.17878251285292204,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+    },
+    {
+      "material_class": "superplasticiser_pce",
+      "amount": 0.00997128070714039,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+    },
+    {
+      "material_class": "vma_cellulose",
+      "amount": 0.0004321900473016511,
+      "role": null,
+      "props": {},
+      "solid_content_pct": null,
+      "vol_pct": null,
+      "molarity": null,
+      "length_mm": null,
+      "diameter_um": null
+    }
+  ],
+  "water_binder": 0.39123870005831124,
+  "sand_binder": 1.7718921966850758,
+  "conditions": {
+    "age_d": null,
+    "comparability_group": null,
+    "rest_time_s": null,
+    "curing_temp_C": 20,
+    "curing_rh_pct": 95,
+    "curing_regime": "moist curing",
+    "is_3dcp": 1,
+    "mix_time_s": null,
+    "max_rpm": null
+  },
+  "basis": "mass_frac_of_powder",
+  "name": "cand_07",
+  "year": null,
+  "schema_version": "1.0"
+}

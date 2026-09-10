@@ -1,0 +1,240 @@
+# Canonical material_class (139 terms, vocab v1.2.2) -> ML group.
+# family: powder | aggregate | admixture | fibre | activator | nano | water | other
+# The class 'other' (and any unmapped class) takes its family from the component role.
+# Group-level defaults: sg = specific gravity used for mass<->volume conversions,
+# solid_content = % solids assumed for liquid admixtures when the paper does not report it.
+
+group_defaults:
+  # powder
+  opc:               {family: powder, sg: 3.15}
+  csa:               {family: powder, sg: 2.85}
+  cac:               {family: powder, sg: 3.20}
+  cement_other:      {family: powder, sg: 3.00}
+  ggbfs:             {family: powder, sg: 2.90}
+  fly_ash_f:         {family: powder, sg: 2.30}
+  fly_ash_c:         {family: powder, sg: 2.60}
+  silica_fume:       {family: powder, sg: 2.20}
+  metakaolin:        {family: powder, sg: 2.60}
+  calcined_clay:     {family: powder, sg: 2.60}
+  limestone_powder:  {family: powder, sg: 2.70}
+  quartz_powder:     {family: powder, sg: 2.65}
+  inert_filler_other: {family: powder, sg: 2.70}
+  gypsum_sulfate:    {family: powder, sg: 2.40}
+  lime:              {family: powder, sg: 2.24}
+  magnesia:          {family: powder, sg: 3.20}
+  slag_other:        {family: powder, sg: 3.30}
+  glass_powder:      {family: powder, sg: 2.50}
+  natural_pozzolan:  {family: powder, sg: 2.40}
+  ash_other:         {family: powder, sg: 2.20}
+  recycled_powder:   {family: powder, sg: 2.50}
+  industrial_residue: {family: powder, sg: 2.80}
+  other_powder:      {family: powder, sg: 2.70}
+  # aggregate
+  natural_sand:      {family: aggregate, sg: 2.65}
+  standard_sand:     {family: aggregate, sg: 2.65}
+  silica_sand:       {family: aggregate, sg: 2.65}
+  crushed_sand:      {family: aggregate, sg: 2.70}
+  recycled_agg:      {family: aggregate, sg: 2.45}
+  lightweight_agg:   {family: aggregate, sg: 1.00}
+  glass_agg:         {family: aggregate, sg: 2.50}
+  rubber:            {family: aggregate, sg: 1.10}
+  other_agg:         {family: aggregate, sg: 2.65}
+  # admixture
+  sp_pce:            {family: admixture, sg: 1.05, solid_content: 30}
+  sp_other:          {family: admixture, sg: 1.10, solid_content: 40}
+  vma:               {family: admixture, sg: 1.30, solid_content: 100}
+  clay_modifier:     {family: admixture, sg: 2.60, solid_content: 100}
+  accelerator:       {family: admixture, sg: 1.30, solid_content: 100}
+  retarder:          {family: admixture, sg: 1.20, solid_content: 100}
+  sap:               {family: admixture, sg: 1.20, solid_content: 100}
+  aea:               {family: admixture, sg: 1.02, solid_content: 100}
+  defoamer:          {family: admixture, sg: 1.00, solid_content: 100}
+  sra:               {family: admixture, sg: 1.00, solid_content: 100}
+  expansive:         {family: admixture, sg: 3.00, solid_content: 100}
+  polymer:           {family: admixture, sg: 1.05, solid_content: 50}
+  water_repellent:   {family: admixture, sg: 1.00, solid_content: 100}
+  other_admix:       {family: admixture, sg: 1.20, solid_content: 100}
+  # fibre
+  steel:             {family: fibre, sg: 7.85}
+  pp:                {family: fibre, sg: 0.91}
+  pe:                {family: fibre, sg: 0.97}
+  pva:               {family: fibre, sg: 1.30}
+  glass:             {family: fibre, sg: 2.60}
+  basalt:            {family: fibre, sg: 2.65}
+  carbon:            {family: fibre, sg: 1.80}
+  natural:           {family: fibre, sg: 1.40}
+  other_fibre:       {family: fibre, sg: 1.15}
+  # activator
+  naoh:              {family: activator, sg: 2.13}
+  koh:               {family: activator, sg: 2.04}
+  sodium_silicate:   {family: activator, sg: 1.40, solid_content: 40}
+  potassium_silicate: {family: activator, sg: 1.40, solid_content: 40}
+  sodium_carbonate:  {family: activator, sg: 2.54}
+  sodium_sulfate:    {family: activator, sg: 2.66}
+  other_activator:   {family: activator, sg: 2.00}
+  # nano
+  nano_silica:       {family: nano, sg: 2.20}
+  nano_caco3:        {family: nano, sg: 2.70}
+  nano_clay:         {family: nano, sg: 2.50}
+  cnt:               {family: nano, sg: 1.80}
+  graphene:          {family: nano, sg: 2.00}
+  csh_seed:          {family: nano, sg: 1.10, solid_content: 20}
+  nano_other:        {family: nano, sg: 3.00}
+  # water / other
+  water:             {family: water, sg: 1.00}
+  other_other:       {family: other, sg: 2.00}
+
+# material_class -> group
+classes:
+  # --- powder: cements ---
+  portland_cement: opc
+  portland_composite_cement: opc
+  portland_limestone_cement: opc
+  white_cement: opc
+  oil_well_cement: opc
+  belite_rich_cement: opc
+  calcium_sulfoaluminate_cement: csa
+  belite_calcium_sulfoaluminate: csa
+  calcium_aluminate_cement: cac
+  supersulfated_cement: cement_other
+  expansive_cement: cement_other
+  magnesium_phosphate_cement: cement_other
+  magnesium_oxychloride_cement: cement_other
+  # --- powder: SCM / fillers ---
+  ggbfs: ggbfs
+  fly_ash_class_F: fly_ash_f
+  fly_ash_class_C: fly_ash_c
+  silica_fume: silica_fume
+  metakaolin: metakaolin
+  calcined_clay: calcined_clay
+  limestone_powder: limestone_powder
+  dolomite_powder: limestone_powder
+  quartz_powder: quartz_powder
+  granite_powder: inert_filler_other
+  marble_powder: inert_filler_other
+  basalt_powder: inert_filler_other
+  wollastonite: inert_filler_other
+  gypsum: gypsum_sulfate
+  anhydrite: gypsum_sulfate
+  calcium_sulfate_hemihydrate: gypsum_sulfate
+  calcium_hydroxide: lime
+  carbide_slag: lime
+  reactive_magnesia: magnesia
+  steel_slag: slag_other
+  ferronickel_slag: slag_other
+  copper_slag: slag_other
+  ladle_furnace_slag: slag_other
+  phosphorus_slag: slag_other
+  glass_powder: glass_powder
+  natural_pozzolan: natural_pozzolan
+  volcanic_ash: natural_pozzolan
+  zeolite: natural_pozzolan
+  diatomaceous_earth: natural_pozzolan
+  rice_husk_ash: ash_other
+  palm_oil_fuel_ash: ash_other
+  sugarcane_bagasse_ash: ash_other
+  wood_ash: ash_other
+  bottom_ash: ash_other
+  municipal_solid_waste_ash: ash_other
+  sewage_sludge_ash: ash_other
+  recycled_concrete_powder: recycled_powder
+  waste_brick_powder: recycled_powder
+  ceramic_waste_powder: recycled_powder
+  red_mud: industrial_residue
+  coal_gangue: industrial_residue
+  biochar: other_powder
+  carbon_black: other_powder
+  # --- aggregate ---
+  natural_sand: natural_sand
+  sea_sand: natural_sand
+  desert_sand: natural_sand
+  standard_sand: standard_sand
+  silica_sand: silica_sand
+  crushed_sand: crushed_sand
+  limestone_fine_aggregate: crushed_sand
+  marble_fine_aggregate: crushed_sand
+  recycled_fine_aggregate: recycled_agg
+  iron_ore_tailing_sand: other_agg
+  waste_glass_aggregate: glass_agg
+  lightweight_fine_aggregate: lightweight_agg
+  expanded_perlite: lightweight_agg
+  expanded_glass_aggregate: lightweight_agg
+  expanded_polystyrene_bead: lightweight_agg
+  rubber_crumb: rubber
+  # --- admixture ---
+  superplasticiser_pce: sp_pce
+  superplasticiser_snf: sp_other
+  superplasticiser_smf: sp_other
+  lignosulfonate: sp_other
+  water_reducer: sp_other
+  dispersant_surfactant: sp_other
+  vma_cellulose: vma
+  vma_polysaccharide_other: vma
+  vma_diutan_gum: vma
+  vma_xanthan_gum: vma
+  vma_welan_gum: vma
+  thixotropy_enhancer: vma
+  bentonite: clay_modifier
+  accelerator_setting: accelerator
+  accelerator_hardening: accelerator
+  retarder: retarder
+  hydration_stabiliser: retarder
+  superabsorbent_polymer: sap
+  air_entraining_agent: aea
+  defoamer: defoamer
+  shrinkage_reducing_admixture: sra
+  expansive_agent: expansive
+  latex_polymer: polymer
+  redispersible_polymer_powder: polymer
+  water_repellent: water_repellent
+  self_healing_agent: other_admix
+  phase_change_material: other_admix
+  corrosion_inhibitor: other_admix
+  co2_gas: other_admix
+  titanium_dioxide_filler: other_admix
+  # --- fibre ---
+  steel_fibre: steel
+  polypropylene_fibre: pp
+  polyethylene_fibre: pe
+  pva_fibre: pva
+  glass_fibre: glass
+  basalt_fibre: basalt
+  carbon_fibre: carbon
+  natural_fibre: natural
+  cellulose_fibre: natural
+  nylon_fibre: other_fibre
+  # --- activator ---
+  sodium_hydroxide: naoh
+  potassium_hydroxide: koh
+  sodium_silicate: sodium_silicate
+  potassium_silicate: potassium_silicate
+  sodium_carbonate: sodium_carbonate
+  sodium_sulfate: sodium_sulfate
+  sodium_aluminate: other_activator
+  # --- nano ---
+  nano_silica: nano_silica
+  nano_caco3: nano_caco3
+  nano_clay: nano_clay
+  halloysite_nanotube: nano_clay
+  carbon_nanotube_mwcnt: cnt
+  carbon_nanotube_swcnt: cnt
+  carbon_nanofibre: cnt
+  graphene: graphene
+  graphene_oxide: graphene
+  reduced_graphene_oxide: graphene
+  csh_seed: csh_seed
+  nano_titania: nano_other
+  nano_magnesia: nano_other
+  nano_alumina: nano_other
+  nanocellulose: nano_other
+  # --- water / other ---
+  water: water
+  seawater: water
+  ice: water
+  raw_sewage_sludge: other_other
+  other: null          # family resolved from role -> other_<family>
+
+# classes counted as "cement" for cement_share / pct_cement_mass conversion
+cement_groups: [opc, csa, cac, cement_other]
+# clinker-bearing groups for the clinker_fraction objective (weight per group)
+clinker_weight: {opc: 1.0, csa: 0.0, cac: 0.0, cement_other: 0.5}

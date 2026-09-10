@@ -1,0 +1,51 @@
+# Inverse design with rheological curve targets:
+#   - shear stress at a given shear rate (Bingham flow-curve point)  -> shear_stress_at_rate + conditions.shear_rate_1s
+#   - static yield stress after a given rest time (structuration point) -> static_yield_stress_at_rest + conditions.rest_time_s
+name: printable_mortar_flowcurve
+targets:
+- quantity: compressive_strength
+  kind: ge
+  lo: 35
+  unit: MPa
+  conditions: {age_d: 28, comparability_group: comp_cube50}
+  p_min: 0.6
+- quantity: shear_stress_at_rate          # flow curve must pass 200-800 Pa at 50 1/s (pumpable but stiff)
+  kind: range
+  lo: 200
+  hi: 800
+  unit: Pa
+  conditions: {shear_rate_1s: 50}
+  p_min: 0.3
+- quantity: shear_stress_at_rate          # and stay below 2 kPa at 150 1/s
+  kind: le
+  hi: 2.0
+  unit: kPa
+  conditions: {shear_rate_1s: 150}
+  p_min: 0.3
+- quantity: static_yield_stress_at_rest   # buildability: >= 1.5 kPa after 20 min at rest
+  kind: ge
+  lo: 1.5
+  unit: kPa
+  conditions: {rest_time_s: 1200}
+  p_min: 0.3
+space:
+  system_type: mortar
+  is_3dcp: true
+  w_b: [0.28, 0.45]
+  s_b: [0.8, 1.8]
+  binder:
+    portland_cement: {lo: 0.5, hi: 1.0, required: true}
+    silica_fume: {lo: 0.0, hi: 0.15}
+    limestone_powder: {lo: 0.0, hi: 0.3}
+    fly_ash_class_F: {lo: 0.0, hi: 0.4}
+  max_binder_components: 3
+  admixtures:
+    superplasticiser_pce: {lo: 0.1, hi: 1.5}
+    vma_cellulose: {lo: 0.0, hi: 0.3}
+  fixed_conditions: {curing_temp_C: 20, curing_rh_pct: 95, curing_regime: moist curing}
+objectives:
+- {name: clinker_fraction, direction: min}
+risk: {p_min: 0.6, ad_max: 1.0}
+budget: {n_samples: 8192, n_refine: 6, refine_generations: 12, time_limit_s: 120}
+output: {top_n: 8, n_literature: 12, plots: true}
+seed: 0

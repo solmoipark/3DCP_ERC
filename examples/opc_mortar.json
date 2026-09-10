@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "name": "opc_mortar_wb040",
+  "system_type": "mortar",
+  "basis": "mass_frac_of_powder",
+  "components": [
+    {"material_class": "portland_cement", "amount": 1.0,
+     "props": {"blaine_m2kg": 380, "sg": 3.15,
+               "oxides": {"SiO2": 20.5, "Al2O3": 5.0, "Fe2O3": 3.2, "CaO": 63.5, "MgO": 1.5,
+                          "SO3": 2.8, "K2O": 0.7, "Na2O": 0.2, "LOI": 1.5}}},
+    {"material_class": "standard_sand", "amount": 3.0},
+    {"material_class": "superplasticiser_pce", "amount": 0.005, "solid_content_pct": 30}
+  ],
+  "water_binder": 0.40,
+  "conditions": {
+    "age_d": 28,
+    "comparability_group": "comp_cube50",
+    "curing_temp_C": 20,
+    "curing_rh_pct": 95,
+    "curing_regime": "water curing at 20 C until testing",
+    "is_3dcp": 0
+  }
+}

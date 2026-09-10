@@ -1,0 +1,12 @@
+# Runtime requirements for the Streamlit UI / predict / design (Streamlit Community Cloud reads this file).
+# Re-building features/targets/models additionally needs master.db (see README).
+numpy>=1.26
+pandas>=2.2
+scikit-learn>=1.5
+lightgbm>=4.3
+scipy>=1.12
+joblib>=1.3
+pyyaml>=6.0
+pyarrow>=15
+matplotlib>=3.8
+streamlit>=1.40

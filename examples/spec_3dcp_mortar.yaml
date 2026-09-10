@@ -1,0 +1,45 @@
+name: 3dcp_printable_mortar
+targets:
+- quantity: compressive_strength
+  kind: ge
+  lo: 40
+  unit: MPa
+  conditions: {age_d: 28, comparability_group: comp_cube50}
+  p_min: 0.7
+# rheology / flow models are weak (wide intervals): require only a modest probability and lean on the
+# retrieved published printable mixes as the primary evidence for these targets
+- quantity: static_yield_stress
+  kind: range
+  lo: 1.0
+  hi: 4.0
+  unit: kPa
+  conditions: {rest_time_s: 0}
+  p_min: 0.3
+- quantity: flow_table_spread
+  kind: range
+  lo: 140
+  hi: 200
+  unit: mm
+  p_min: 0.35
+space:
+  system_type: mortar
+  is_3dcp: true
+  w_b: [0.28, 0.45]
+  s_b: [0.8, 1.8]
+  binder:
+    portland_cement: {lo: 0.5, hi: 1.0, required: true}
+    silica_fume: {lo: 0.0, hi: 0.15}
+    limestone_powder: {lo: 0.0, hi: 0.3}
+    fly_ash_class_F: {lo: 0.0, hi: 0.4}
+  max_binder_components: 3
+  admixtures:
+    superplasticiser_pce: {lo: 0.2, hi: 1.5}     # % of powder as dosed
+    vma_cellulose: {lo: 0.0, hi: 0.3}
+  fixed_conditions: {curing_temp_C: 20, curing_rh_pct: 95, curing_regime: moist curing}
+objectives:
+- {name: clinker_fraction, direction: min}
+- {name: co2, direction: min}
+risk: {p_min: 0.7, ad_max: 1.0, combine: product}
+budget: {n_samples: 16384, n_refine: 8, refine_generations: 20, time_limit_s: 120}
+output: {top_n: 10, n_literature: 15, plots: true}
+seed: 0
