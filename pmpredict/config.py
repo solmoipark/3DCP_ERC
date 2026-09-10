@@ -55,14 +55,37 @@ def load_config(db_path: str | Path | None = None, path: Path | None = None) -> 
     # The database is only needed to (re)build features/targets; the UI and predict/design run from the
     # parquet caches in data/ and the models in artifacts/, so a missing db_path must not stop them.
     db = db_path or os.environ.get("PMPREDICT_DB") or raw.get("db_path") or "master.db"
+    data_dir = _resolve(raw.get("data_dir", "data"))
+    db_resolved = _resolve(db)
+    if not db_resolved.exists():
+        # The repository ships the database compressed (data/master.db.xz, ~13 MB); unpack it once on first use so a
+        # clone (or a Streamlit Cloud instance) can also rebuild features/targets/models.
+        db_resolved = unpack_bundled_db(data_dir) or db_resolved
     return PipelineConfig(
-        db_path=_resolve(db),
+        db_path=db_resolved,
         data_dir=_resolve(raw.get("data_dir", "data")),
         artifacts_dir=_resolve(raw.get("artifacts_dir", "artifacts")),
         seed=int(raw.get("seed", 42)),
         use_mixing_protocol=bool(raw.get("use_mixing_protocol", False)),
         paper_weighting=str(raw.get("paper_weighting", "sqrt")),
     )
+
+
+def unpack_bundled_db(data_dir: Path) -> Path | None:
+    """Return data/master.db, decompressing data/master.db.xz on first use; None when neither exists."""
+    target = data_dir / "master.db"
+    if target.exists():
+        return target
+    packed = data_dir / "master.db.xz"
+    if not packed.exists():
+        return None
+    import lzma
+    import shutil
+    tmp = target.with_suffix(".db.part")
+    with lzma.open(packed, "rb") as src, open(tmp, "wb") as dst:
+        shutil.copyfileobj(src, dst)
+    tmp.replace(target)
+    return target
 
 
 def load_yaml(name: str) -> dict:

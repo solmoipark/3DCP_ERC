@@ -24,3 +24,7 @@ data/raw/material_physical.parquet
 data/composition_qa.csv
 artifacts/reports/oof_*.parquet
 artifacts/reports/design/closed_loop*.csv
+
+# decompressed copy of data/master.db.xz (created on first use)
+data/master.db
+data/master.db.part

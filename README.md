@@ -22,9 +22,11 @@ pip install -e .                     # optional: the `pmpredict` command
 
 The repository ships everything the UI, `predict` and `design` need: trained models (`artifacts/models/`,
 54 MB), feature/target/composition caches and the paper/mix tables (`data/`), and the digitised-curve caches.
-The literature database itself (`master.db`, 174 MB, not in git) is only required to **rebuild** features,
-targets or models; point to it with `configs/pipeline.yaml` (`db_path`, relative to the repo root),
-the `PMPREDICT_DB` environment variable, or `--db`.
+The literature database is included compressed as `data/master.db.xz` (13 MB; 174 MB unpacked). It is only
+required to **rebuild** features, targets or models: the first command that needs it unpacks it to
+`data/master.db` automatically. To use another copy, set `db_path` in `configs/pipeline.yaml` (relative to
+the repo root), the `PMPREDICT_DB` environment variable, or `--db`. After changing the database, refresh the
+bundle with `xz -9 -k master.db` (or Python `lzma`) and commit the new `data/master.db.xz`.
 
 ## Run the web UI
 
