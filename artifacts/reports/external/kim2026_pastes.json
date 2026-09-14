@@ -1,0 +1,622 @@
+[
+ {
+  "schema_version": "1.0",
+  "name": "P01_wb0.30_VA0_SP0",
+  "system_type": "paste",
+  "basis": "mass_frac_of_powder",
+  "components": [
+   {
+    "material_class": "portland_cement",
+    "amount": 0.7
+   },
+   {
+    "material_class": "fly_ash_class_F",
+    "amount": 0.2
+   },
+   {
+    "material_class": "silica_fume",
+    "amount": 0.1
+   }
+  ],
+  "water_binder": 0.3,
+  "conditions": {
+   "age_d": 0.01,
+   "rest_time_s": 0,
+   "is_3dcp": 1
+  }
+ },
+ {
+  "schema_version": "1.0",
+  "name": "P02_wb0.35_VA0_SP0",
+  "system_type": "paste",
+  "basis": "mass_frac_of_powder",
+  "components": [
+   {
+    "material_class": "portland_cement",
+    "amount": 0.7
+   },
+   {
+    "material_class": "fly_ash_class_F",
+    "amount": 0.2
+   },
+   {
+    "material_class": "silica_fume",
+    "amount": 0.1
+   }
+  ],
+  "water_binder": 0.35,
+  "conditions": {
+   "age_d": 0.01,
+   "rest_time_s": 0,
+   "is_3dcp": 1
+  }
+ },
+ {
+  "schema_version": "1.0",
+  "name": "P03_wb0.40_VA0_SP0",
+  "system_type": "paste",
+  "basis": "mass_frac_of_powder",
+  "components": [
+   {
+    "material_class": "portland_cement",
+    "amount": 0.7
+   },
+   {
+    "material_class": "fly_ash_class_F",
+    "amount": 0.2
+   },
+   {
+    "material_class": "silica_fume",
+    "amount": 0.1
+   }
+  ],
+  "water_binder": 0.4,
+  "conditions": {
+   "age_d": 0.01,
+   "rest_time_s": 0,
+   "is_3dcp": 1
+  }
+ },
+ {
+  "schema_version": "1.0",
+  "name": "P04_wb0.45_VA0_SP0",
+  "system_type": "paste",
+  "basis": "mass_frac_of_powder",
+  "components": [
+   {
+    "material_class": "portland_cement",
+    "amount": 0.7
+   },
+   {
+    "material_class": "fly_ash_class_F",
+    "amount": 0.2
+   },
+   {
+    "material_class": "silica_fume",
+    "amount": 0.1
+   }
+  ],
+  "water_binder": 0.45,
+  "conditions": {
+   "age_d": 0.01,
+   "rest_time_s": 0,
+   "is_3dcp": 1
+  }
+ },
+ {
+  "schema_version": "1.0",
+  "name": "P05_wb0.50_VA0_SP0",
+  "system_type": "paste",
+  "basis": "mass_frac_of_powder",
+  "components": [
+   {
+    "material_class": "portland_cement",
+    "amount": 0.7
+   },
+   {
+    "material_class": "fly_ash_class_F",
+    "amount": 0.2
+   },
+   {
+    "material_class": "silica_fume",
+    "amount": 0.1
+   }
+  ],
+  "water_binder": 0.5,
+  "conditions": {
+   "age_d": 0.01,
+   "rest_time_s": 0,
+   "is_3dcp": 1
+  }
+ },
+ {
+  "schema_version": "1.0",
+  "name": "P06_wb0.30_VA0.1_SP0",
+  "system_type": "paste",
+  "basis": "mass_frac_of_powder",
+  "components": [
+   {
+    "material_class": "portland_cement",
+    "amount": 0.7
+   },
+   {
+    "material_class": "fly_ash_class_F",
+    "amount": 0.2
+   },
+   {
+    "material_class": "silica_fume",
+    "amount": 0.1
+   },
+   {
+    "material_class": "vma_cellulose",
+    "amount": 0.001
+   }
+  ],
+  "water_binder": 0.3,
+  "conditions": {
+   "age_d": 0.01,
+   "rest_time_s": 0,
+   "is_3dcp": 1
+  }
+ },
+ {
+  "schema_version": "1.0",
+  "name": "P07_wb0.35_VA0.1_SP0",
+  "system_type": "paste",
+  "basis": "mass_frac_of_powder",
+  "components": [
+   {
+    "material_class": "portland_cement",
+    "amount": 0.7
+   },
+   {
+    "material_class": "fly_ash_class_F",
+    "amount": 0.2
+   },
+   {
+    "material_class": "silica_fume",
+    "amount": 0.1
+   },
+   {
+    "material_class": "vma_cellulose",
+    "amount": 0.001
+   }
+  ],
+  "water_binder": 0.35,
+  "conditions": {
+   "age_d": 0.01,
+   "rest_time_s": 0,
+   "is_3dcp": 1
+  }
+ },
+ {
+  "schema_version": "1.0",
+  "name": "P08_wb0.40_VA0.1_SP0",
+  "system_type": "paste",
+  "basis": "mass_frac_of_powder",
+  "components": [
+   {
+    "material_class": "portland_cement",
+    "amount": 0.7
+   },
+   {
+    "material_class": "fly_ash_class_F",
+    "amount": 0.2
+   },
+   {
+    "material_class": "silica_fume",
+    "amount": 0.1
+   },
+   {
+    "material_class": "vma_cellulose",
+    "amount": 0.001
+   }
+  ],
+  "water_binder": 0.4,
+  "conditions": {
+   "age_d": 0.01,
+   "rest_time_s": 0,
+   "is_3dcp": 1
+  }
+ },
+ {
+  "schema_version": "1.0",
+  "name": "P09_wb0.50_VA0.1_SP0",
+  "system_type": "paste",
+  "basis": "mass_frac_of_powder",
+  "components": [
+   {
+    "material_class": "portland_cement",
+    "amount": 0.7
+   },
+   {
+    "material_class": "fly_ash_class_F",
+    "amount": 0.2
+   },
+   {
+    "material_class": "silica_fume",
+    "amount": 0.1
+   },
+   {
+    "material_class": "vma_cellulose",
+    "amount": 0.001
+   }
+  ],
+  "water_binder": 0.5,
+  "conditions": {
+   "age_d": 0.01,
+   "rest_time_s": 0,
+   "is_3dcp": 1
+  }
+ },
+ {
+  "schema_version": "1.0",
+  "name": "P10_wb0.30_VA0.2_SP0",
+  "system_type": "paste",
+  "basis": "mass_frac_of_powder",
+  "components": [
+   {
+    "material_class": "portland_cement",
+    "amount": 0.7
+   },
+   {
+    "material_class": "fly_ash_class_F",
+    "amount": 0.2
+   },
+   {
+    "material_class": "silica_fume",
+    "amount": 0.1
+   },
+   {
+    "material_class": "vma_cellulose",
+    "amount": 0.002
+   }
+  ],
+  "water_binder": 0.3,
+  "conditions": {
+   "age_d": 0.01,
+   "rest_time_s": 0,
+   "is_3dcp": 1
+  }
+ },
+ {
+  "schema_version": "1.0",
+  "name": "P11_wb0.40_VA0.2_SP0",
+  "system_type": "paste",
+  "basis": "mass_frac_of_powder",
+  "components": [
+   {
+    "material_class": "portland_cement",
+    "amount": 0.7
+   },
+   {
+    "material_class": "fly_ash_class_F",
+    "amount": 0.2
+   },
+   {
+    "material_class": "silica_fume",
+    "amount": 0.1
+   },
+   {
+    "material_class": "vma_cellulose",
+    "amount": 0.002
+   }
+  ],
+  "water_binder": 0.4,
+  "conditions": {
+   "age_d": 0.01,
+   "rest_time_s": 0,
+   "is_3dcp": 1
+  }
+ },
+ {
+  "schema_version": "1.0",
+  "name": "P12_wb0.50_VA0.2_SP0",
+  "system_type": "paste",
+  "basis": "mass_frac_of_powder",
+  "components": [
+   {
+    "material_class": "portland_cement",
+    "amount": 0.7
+   },
+   {
+    "material_class": "fly_ash_class_F",
+    "amount": 0.2
+   },
+   {
+    "material_class": "silica_fume",
+    "amount": 0.1
+   },
+   {
+    "material_class": "vma_cellulose",
+    "amount": 0.002
+   }
+  ],
+  "water_binder": 0.5,
+  "conditions": {
+   "age_d": 0.01,
+   "rest_time_s": 0,
+   "is_3dcp": 1
+  }
+ },
+ {
+  "schema_version": "1.0",
+  "name": "P13_wb0.30_VA0.1_SP0.05",
+  "system_type": "paste",
+  "basis": "mass_frac_of_powder",
+  "components": [
+   {
+    "material_class": "portland_cement",
+    "amount": 0.7
+   },
+   {
+    "material_class": "fly_ash_class_F",
+    "amount": 0.2
+   },
+   {
+    "material_class": "silica_fume",
+    "amount": 0.1
+   },
+   {
+    "material_class": "vma_cellulose",
+    "amount": 0.001
+   },
+   {
+    "material_class": "superplasticiser_pce",
+    "amount": 0.0005,
+    "solid_content_pct": 30
+   }
+  ],
+  "water_binder": 0.3,
+  "conditions": {
+   "age_d": 0.01,
+   "rest_time_s": 0,
+   "is_3dcp": 1
+  }
+ },
+ {
+  "schema_version": "1.0",
+  "name": "P14_wb0.30_VA0.1_SP0.1",
+  "system_type": "paste",
+  "basis": "mass_frac_of_powder",
+  "components": [
+   {
+    "material_class": "portland_cement",
+    "amount": 0.7
+   },
+   {
+    "material_class": "fly_ash_class_F",
+    "amount": 0.2
+   },
+   {
+    "material_class": "silica_fume",
+    "amount": 0.1
+   },
+   {
+    "material_class": "vma_cellulose",
+    "amount": 0.001
+   },
+   {
+    "material_class": "superplasticiser_pce",
+    "amount": 0.001,
+    "solid_content_pct": 30
+   }
+  ],
+  "water_binder": 0.3,
+  "conditions": {
+   "age_d": 0.01,
+   "rest_time_s": 0,
+   "is_3dcp": 1
+  }
+ },
+ {
+  "schema_version": "1.0",
+  "name": "P15_wb0.30_VA0.1_SP0.15",
+  "system_type": "paste",
+  "basis": "mass_frac_of_powder",
+  "components": [
+   {
+    "material_class": "portland_cement",
+    "amount": 0.7
+   },
+   {
+    "material_class": "fly_ash_class_F",
+    "amount": 0.2
+   },
+   {
+    "material_class": "silica_fume",
+    "amount": 0.1
+   },
+   {
+    "material_class": "vma_cellulose",
+    "amount": 0.001
+   },
+   {
+    "material_class": "superplasticiser_pce",
+    "amount": 0.0015,
+    "solid_content_pct": 30
+   }
+  ],
+  "water_binder": 0.3,
+  "conditions": {
+   "age_d": 0.01,
+   "rest_time_s": 0,
+   "is_3dcp": 1
+  }
+ },
+ {
+  "schema_version": "1.0",
+  "name": "P16_wb0.40_VA0.1_SP0.05",
+  "system_type": "paste",
+  "basis": "mass_frac_of_powder",
+  "components": [
+   {
+    "material_class": "portland_cement",
+    "amount": 0.7
+   },
+   {
+    "material_class": "fly_ash_class_F",
+    "amount": 0.2
+   },
+   {
+    "material_class": "silica_fume",
+    "amount": 0.1
+   },
+   {
+    "material_class": "vma_cellulose",
+    "amount": 0.001
+   },
+   {
+    "material_class": "superplasticiser_pce",
+    "amount": 0.0005,
+    "solid_content_pct": 30
+   }
+  ],
+  "water_binder": 0.4,
+  "conditions": {
+   "age_d": 0.01,
+   "rest_time_s": 0,
+   "is_3dcp": 1
+  }
+ },
+ {
+  "schema_version": "1.0",
+  "name": "P17_wb0.40_VA0.1_SP0.1",
+  "system_type": "paste",
+  "basis": "mass_frac_of_powder",
+  "components": [
+   {
+    "material_class": "portland_cement",
+    "amount": 0.7
+   },
+   {
+    "material_class": "fly_ash_class_F",
+    "amount": 0.2
+   },
+   {
+    "material_class": "silica_fume",
+    "amount": 0.1
+   },
+   {
+    "material_class": "vma_cellulose",
+    "amount": 0.001
+   },
+   {
+    "material_class": "superplasticiser_pce",
+    "amount": 0.001,
+    "solid_content_pct": 30
+   }
+  ],
+  "water_binder": 0.4,
+  "conditions": {
+   "age_d": 0.01,
+   "rest_time_s": 0,
+   "is_3dcp": 1
+  }
+ },
+ {
+  "schema_version": "1.0",
+  "name": "P18_wb0.40_VA0.1_SP0.15",
+  "system_type": "paste",
+  "basis": "mass_frac_of_powder",
+  "components": [
+   {
+    "material_class": "portland_cement",
+    "amount": 0.7
+   },
+   {
+    "material_class": "fly_ash_class_F",
+    "amount": 0.2
+   },
+   {
+    "material_class": "silica_fume",
+    "amount": 0.1
+   },
+   {
+    "material_class": "vma_cellulose",
+    "amount": 0.001
+   },
+   {
+    "material_class": "superplasticiser_pce",
+    "amount": 0.0015,
+    "solid_content_pct": 30
+   }
+  ],
+  "water_binder": 0.4,
+  "conditions": {
+   "age_d": 0.01,
+   "rest_time_s": 0,
+   "is_3dcp": 1
+  }
+ },
+ {
+  "schema_version": "1.0",
+  "name": "P19_wb0.50_VA0.1_SP0.05",
+  "system_type": "paste",
+  "basis": "mass_frac_of_powder",
+  "components": [
+   {
+    "material_class": "portland_cement",
+    "amount": 0.7
+   },
+   {
+    "material_class": "fly_ash_class_F",
+    "amount": 0.2
+   },
+   {
+    "material_class": "silica_fume",
+    "amount": 0.1
+   },
+   {
+    "material_class": "vma_cellulose",
+    "amount": 0.001
+   },
+   {
+    "material_class": "superplasticiser_pce",
+    "amount": 0.0005,
+    "solid_content_pct": 30
+   }
+  ],
+  "water_binder": 0.5,
+  "conditions": {
+   "age_d": 0.01,
+   "rest_time_s": 0,
+   "is_3dcp": 1
+  }
+ },
+ {
+  "schema_version": "1.0",
+  "name": "P20_wb0.50_VA0.1_SP0.1",
+  "system_type": "paste",
+  "basis": "mass_frac_of_powder",
+  "components": [
+   {
+    "material_class": "portland_cement",
+    "amount": 0.7
+   },
+   {
+    "material_class": "fly_ash_class_F",
+    "amount": 0.2
+   },
+   {
+    "material_class": "silica_fume",
+    "amount": 0.1
+   },
+   {
+    "material_class": "vma_cellulose",
+    "amount": 0.001
+   },
+   {
+    "material_class": "superplasticiser_pce",
+    "amount": 0.001,
+    "solid_content_pct": 30
+   }
+  ],
+  "water_binder": 0.5,
+  "conditions": {
+   "age_d": 0.01,
+   "rest_time_s": 0,
+   "is_3dcp": 1
+  }
+ }
+]

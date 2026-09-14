@@ -1,17 +1,19 @@
 {
- "n_mixes": 22599,
- "n_normalised": 21650,
+ "n_mixes": 29626,
+ "n_normalised": 28001,
  "modes": {
-  "abs": 9957,
-  "rel": 6381,
-  "parts": 4905,
-  "failed": 949,
-  "solids": 407
+  "abs": 13269,
+  "rel": 7453,
+  "parts": 6566,
+  "failed": 1625,
+  "solids": 713
  },
  "n_features": 138,
- "schema_hash": "46fc6fc1a95b98db",
- "water_b_available": 0.8781062355658199,
- "chem_coverage_ge_0p8": 0.7320554272517321,
- "curing_known": 0.7140877598152425,
- "seconds": 14.8
+ "schema_hash": "9dac026be72fb584",
+ "water_b_available": 0.8805042677047248,
+ "chem_coverage_ge_0p8": 0.6662976322274204,
+ "curing_known": 0.6433341666369058,
+ "seconds": 28.9,
+ "wb_agree_0p02": 0.834416223666076,
+ "wb_agree_0p05": 0.882325917175297
 }

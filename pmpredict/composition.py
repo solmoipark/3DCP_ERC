@@ -452,7 +452,7 @@ def normalize_mix(rows: pd.DataFrame, mix_row: pd.Series) -> MixComposition:
     sb_rep = mix_row.get("sand_binder_ratio")
     sb_rep = float(sb_rep) if sb_rep is not None and not pd.isna(sb_rep) else None
     sb_basis = mix_row.get("sand_binder_basis")
-    if agg_mass:
+    if agg_mass and sum(agg_mass.values()) > 0:
         mc.sand_b, mc.sand_b_source = sum(agg_mass.values()), "computed"
         tot = mc.sand_b
         mc.agg_share = {g: m / tot for g, m in agg_mass.items()}

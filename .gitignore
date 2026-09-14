@@ -28,3 +28,7 @@ artifacts/reports/design/closed_loop*.csv
 # decompressed copy of data/master.db.xz (created on first use)
 data/master.db
 data/master.db.part
+
+# run logs and stale cache copies
+artifacts/reports/_*.log
+data/raw_stale/
