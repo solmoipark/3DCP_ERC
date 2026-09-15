@@ -1,0 +1,17 @@
+name: wall_1m
+object_type: wall
+target_height_mm: 1000
+footprint_mm: 1500
+wall_filaments: 2
+nozzle_d_mm: 25
+layer_height_mm: null
+layer_width_mm: null
+print_speed_mm_s: 50
+layer_cycle_time_s: null
+dwell_s: 0
+start_time_after_mixing_min: 10
+open_time_min: 60
+safety_factor: 1.5
+check_buckling: true
+notes: null fields are filled from the calibrated printable medians (layer h = 0.5
+  x nozzle, w = 1.2 x nozzle, speed 40 mm/s)

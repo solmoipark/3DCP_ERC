@@ -10,3 +10,5 @@ pyyaml>=6.0
 pyarrow>=15
 matplotlib>=3.8
 streamlit>=1.40
+# agent (chat) extras are optional: pip install -e ".[agent]"  (anthropic, openai, mcp, claude-agent-sdk, openpyxl)
+openpyxl>=3.1

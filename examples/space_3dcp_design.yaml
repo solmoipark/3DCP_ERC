@@ -1,0 +1,17 @@
+# search space for `pmpredict buildability --design --space ...` (a full design spec also works: its targets are added)
+system_type: mortar
+is_3dcp: true
+w_b: [0.25, 0.42]
+s_b: [0.8, 1.8]
+binder:
+  portland_cement: {lo: 0.5, hi: 1.0, required: true}
+  silica_fume: {lo: 0.0, hi: 0.15}
+  limestone_powder: {lo: 0.0, hi: 0.3}
+  fly_ash_class_F: {lo: 0.0, hi: 0.4}
+max_binder_components: 3
+admixtures:
+  superplasticiser_pce: {lo: 0.1, hi: 1.2}    # % of powder as dosed
+  vma_cellulose: {lo: 0.0, hi: 0.4}
+fixed_conditions: {curing_temp_C: 20, curing_rh_pct: 95, curing_regime: moist curing}
+extra_targets:
+  - {quantity: compressive_strength, kind: ge, lo: 30, unit: MPa, conditions: {age_d: 28, comparability_group: comp_cube50}, p_min: 0.6}

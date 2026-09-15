@@ -1,0 +1,16 @@
+tier,score,doi,year,is_3dcp,mix,system_type,composition,target_distance,coverage,penalty,compressive_strength@28d,plastic_viscosity,static_yield_stress,compressive_strength@7d,compressive_strength@3d,compressive_strength@1d
+near,0.27701102071065586,10.1016/j.conbuildmat.2017.12.112,2018,1,Mixture A,mortar,opc 0.48 / fly_ash_f 0.48 / silica_fume 0.05; w/b 0.14; s/b 0.50,1.0,0.75,0.30000000000000004,49.7,16.65,3350.0,,,
+near,0.27701102071065586,10.1016/j.mtsust.2026.101398,2026,1,M0PE,mortar,"ggbfs 0.60 / opc 0.30 / silica_fume 0.10; w/b 0.25; s/b 0.36; sp_pce 0.41%, vma 0.66%",1.0,0.75,0.30000000000000004,49.7,6.5,894.0,,,
+near,0.27701102071065586,10.3390/buildings15193436,2025,1,1% Microfibre + SF,mortar,ggbfs 0.50 / opc 0.45 / silica_fume 0.05; w/b 0.26; s/b 1.00; sp_pce 2.00%,1.0,0.75,0.30000000000000004,86.06,13.6,208.25,66.55,,
+near,0.2769960971321936,10.1016/j.rineng.2025.106680,2025,1,C4G6,mortar,ggbfs 0.60 / opc 0.40; w/b 0.24; s/b 1.00; sp_pce 0.01%,1.0000538750423422,0.75,0.30000000000000004,94.8,9.7,177.5,77.5,,
+near,0.26745074264395596,10.1016/j.conbuildmat.2025.144187,2025,1,RFA-50,mortar,opc 0.55 / other_powder 0.45; w/b 0.40; s/b 1.50,1.0351218816234327,0.75,0.30000000000000004,44.6,68.2,1760.1,,30.2,
+near,0.23176404793800864,10.1016/j.addma.2023.103722,2023,1,3DPC mixture,mortar,"opc 1.00; w/b 0.35; s/b 1.00; sp_pce 0.05%, vma 0.06%",1.0,0.75,0.51,55.7,1.12,1560.8,47.2,,25.6
+near,0.23176404793800864,10.1016/j.cemconcomp.2024.105446,2024,1,S-3D printed concrete (V70A8D60) / cast counterpart,mortar,fly_ash_f 0.50 / silica_fume 0.50; w/b 0.35; s/b 0.60; fibre 0.62 vol%,1.0,0.75,0.51,42.8,7.65,859.0,,,
+near,0.23176404793800864,10.1016/j.clema.2025.100358,2025,1,M-0,mortar,"opc 1.00; w/b 0.32; s/b 2.00; sp_pce 0.99%, vma 0.12%",1.0,0.75,0.51,30.0,15.0,360.0,,,
+near,0.1662066124263935,10.1016/j.mtsust.2026.101398,2026,1,M0.5PE,mortar,"ggbfs 0.60 / opc 0.30 / silica_fume 0.10; w/b 0.25; s/b 0.36; sp_pce 0.50%, vma 0.66%; fibre 0.66 vol%",1.0,0.75,0.30000000000000004,50.3,9.1,1028.0,,,
+near,0.16581138784258997,10.1016/j.rineng.2025.106680,2025,1,C3G7N1,mortar,ggbfs 0.70 / opc 0.30; w/b 0.24; s/b 1.00; sp_pce 0.01%,1.002380743032962,0.75,0.30000000000000004,105.0,9.1,78.6,89.9,,
+near,0.1657353061123381,10.3390/buildings15193436,2025,1,0.75% Microfibre + SF,mortar,ggbfs 0.50 / opc 0.45 / silica_fume 0.05; w/b 0.26; s/b 1.00; sp_pce 2.00%,1.00283969335866,0.75,0.30000000000000004,97.98,9.67,67.86,76.39,,
+near,0.1390584287628052,10.1016/j.clema.2025.100358,2025,1,M-10,mortar,"opc 0.90 / ash_other 0.10; w/b 0.32; s/b 2.00; sp_pce 0.99%, vma 0.12%",1.0,0.75,0.51,30.0,12.5,400.0,,,
+near,0.0997239674558361,10.1016/j.mtsust.2026.101398,2026,1,M0.75PE,mortar,"ggbfs 0.60 / opc 0.30 / silica_fume 0.10; w/b 0.25; s/b 0.36; sp_pce 0.54%, vma 0.66%; fibre 0.98 vol%",1.0,0.75,0.30000000000000004,47.8,10.6,1287.0,,,
+near,0.09933131006147711,10.1016/j.rineng.2025.106680,2025,1,C4G6N1,mortar,ggbfs 0.60 / opc 0.40; w/b 0.24; s/b 1.00; sp_pce 0.01%,1.003945214701729,0.75,0.30000000000000004,104.2,6.4,45.1,84.1,,
+near,0.09912294600146326,10.3390/buildings15193436,2025,1,0.5% Microfibre + SF,mortar,ggbfs 0.50 / opc 0.45 / silica_fume 0.05; w/b 0.26; s/b 1.00; sp_pce 2.00%,1.0060450853793537,0.75,0.30000000000000004,109.1,3.75,9.35,82.29,,

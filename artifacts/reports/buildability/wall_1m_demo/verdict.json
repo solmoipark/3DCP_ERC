@@ -1,0 +1,105 @@
+{
+ "job": {
+  "name": "wall_1m",
+  "object_type": "wall",
+  "target_height_mm": 1000,
+  "footprint_mm": 1500,
+  "path_length_mm": null,
+  "wall_filaments": 2,
+  "nozzle_d_mm": 25,
+  "nozzle_w_mm": null,
+  "nozzle_h_mm": null,
+  "layer_height_mm": null,
+  "layer_width_mm": null,
+  "print_speed_mm_s": 50,
+  "layer_cycle_time_s": null,
+  "dwell_s": 0,
+  "start_time_after_mixing_min": 10,
+  "open_time_min": 60,
+  "safety_factor": 1.5,
+  "check_buckling": true,
+  "notes": "null fields are filled from the calibrated printable medians (layer h = 0.5 x nozzle, w = 1.2 x nozzle, speed 40 mm/s)"
+ },
+ "material": {
+  "tau_s0_Pa": 3000.0,
+  "athix_Pa_s": 1.5,
+  "rho_kg_m3": 2100.0,
+  "E_over_tau": 25.0,
+  "dynamic_yield_Pa": null,
+  "plastic_viscosity_Pa_s": null,
+  "tau_s0_band": null,
+  "athix_band": null,
+  "source": "user"
+ },
+ "verdict": {
+  "label": "non_printable",
+  "governing": "elastic_buckling",
+  "reasons": [
+   "plastic collapse expected at layer 51 of 80 (H_max 639 mm < 1000 mm)",
+   "self-weight buckling of a free straight wall expected at layer 18 (thickness 59 mm, E = 25 x tau_s; closed or braced paths are stiffer: set check_buckling false or add wall_filaments)",
+   "print duration 80 min + start 10 min exceeds open time 60 min"
+  ],
+  "n_target": 80,
+  "layer_height_mm": 12.5,
+  "layer_cycle_time_s": 60.0,
+  "print_time_min": 80.0,
+  "tau_s0_Pa": 3000.0,
+  "athix_Pa_s": 1.5,
+  "tau_s_end_Pa": 10200.0,
+  "n_max_plastic": 51.12917836459064,
+  "n_max_plastic_sf": 22.55429380254834,
+  "n_max_buckling": 18.0,
+  "H_max_mm": 225.0,
+  "margin": 0.639114729557383,
+  "R_static": 3.96466429852516,
+  "p_collapse_empirical": 0.815068493150685,
+  "p_stable_physics": null,
+  "tau0_required_Pa": 10640.98934336322,
+  "athix_required_Pa_s": 3.0918727798673378,
+  "min_cycle_time_s": 123.67491119469351,
+  "critical_cycle_time_s": 99.116607463129,
+  "open_time_ok": false,
+  "extrudability": {
+   "static_yield_stress": {
+    "value": 3000.0,
+    "p10": 195.0,
+    "p50": 1120.0,
+    "p90": 4701.078,
+    "scope": "nozzle 15-30 mm",
+    "status": "inside"
+   }
+  },
+  "defaults_used": [
+   "layer_height_mm = 12.5 (0.5 x nozzle, printable median)",
+   "layer_width_mm = 29.61 (1.2 x nozzle, printable median)",
+   "layer_cycle_time_s = 60.0 (path 3000 mm / 50 mm/s + dwell 0 s)"
+  ],
+  "warnings": []
+ },
+ "schedule": {
+  "n_layers": 80,
+  "layer_height_mm": 12.5,
+  "t_c_min_s": 123.67491119469351,
+  "t_c_min_no_sf_s": 74.116607463129,
+  "t_c_max_s": 37.5,
+  "t_c_max_basis": "open time 60 min - start 10 min over 80 layers",
+  "t_c_current_s": 60.0,
+  "t_c_recommended_s": null,
+  "feasible": false,
+  "print_time_recommended_min": null,
+  "speed": {
+   "v_min_mm_s": 80.0,
+   "v_max_mm_s": 24.257142948558837,
+   "current_mm_s": 50,
+   "v_recommended_mm_s": null
+  },
+  "critical_cycle_time_s": 99.116607463129,
+  "tau0_required_at_current_Pa": 10640.98934336322,
+  "athix_required_at_current_Pa_s": 3.0918727798673378,
+  "defaults_used": [
+   "layer_height_mm = 12.5 (0.5 x nozzle, printable median)",
+   "layer_width_mm = 29.61 (1.2 x nozzle, printable median)",
+   "layer_cycle_time_s = 60.0 (path 3000 mm / 50 mm/s + dwell 0 s)"
+  ]
+ }
+}

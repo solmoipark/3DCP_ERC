@@ -218,6 +218,73 @@ def cmd_ui(args):
     subprocess.run(cmd, check=False)
 
 
+def cmd_buildability(args):
+    """Print job x material -> verdict + schedule window (+ inverse design of the mix when --design)."""
+    from . import buildability as B
+    cfg = _cfg(args)
+    cal = B.load_calibration(cfg)
+    job = B.PrintJob.load(args.job)
+    out = Path(args.out) if args.out else None
+    if out:
+        out.mkdir(parents=True, exist_ok=True)
+    if args.design:
+        import yaml
+        space = yaml.safe_load(Path(args.space).read_text(encoding="utf-8")) if args.space else None
+        if space is None:
+            from .design.spec import TEMPLATES
+            space = dict(TEMPLATES["3dcp_printable_mortar"]["space"])
+        extra = (space.pop("extra_targets", None) if isinstance(space, dict) else None) or []
+        if "space" in space:                                   # a full design spec was given: take its space and targets
+            extra = extra or space.get("targets", []); space = space["space"]
+        res, table, d, info, paths = B.design_for_job(job, space, cfg, out_dir=out, extra_targets=extra, rho=args.rho)
+        print(f"job '{job.name}': {info['n_layers']} layers x {info['layer_cycle_time_s']:.0f} s -> tau_s required at end of print "
+              f"{info['tau_s_required_end_Pa']:.0f} Pa; design feasible {res.diagnostics.get('n_feasible')} / {res.diagnostics.get('n_sampled')}"
+              + (f" (relaxed: {res.diagnostics.get('p_min_used')})" if res.diagnostics.get("relaxation") else ""))
+        cols = ["rank", "mix", "tau_s0_Pa", "athix_Pa_s", "verdict", "governing", "n_max", "n_target", "p_stable", "t_c_min_s", "t_c_max_s", "t_c_recommended_s", "v_recommended_mm_s"]
+        with pd.option_context("display.width", 250, "display.max_colwidth", 90):
+            print(table[cols].to_string(index=False) if len(table) else "no candidates")
+        if paths:
+            print("  outputs: " + ", ".join(str(p) for p in paths.values()))
+        return
+    if args.mix:
+        from .schema import MixSpec
+        mat = B.material_from_mix(MixSpec.from_json(args.mix), cfg)
+        mat.rho_kg_m3 = args.rho
+    else:
+        if args.tau_s0 is None:
+            sys.exit("give --mix mix.json (predicted fresh state) or --tau-s0 [Pa] (+ --athix [Pa/s])")
+        mat = B.FreshMaterial(tau_s0_Pa=args.tau_s0, athix_Pa_s=args.athix, rho_kg_m3=args.rho)
+    v = B.assess(job, mat, cal)
+    sc = B.schedule(job, mat, cal)
+    an = B.similar_prints(job, mat, cfg, k=args.analogues, cal=cal)
+    md = B.render_markdown(job, mat, v, sc, an)
+    if args.json:
+        print(json.dumps(dict(verdict=v.to_dict(), schedule={k: x for k, x in sc.items() if k != "sweep"}), indent=1, default=str))
+    else:
+        print(md)
+    if out:
+        (out / "assessment.md").write_text(md, encoding="utf-8")
+        (out / "verdict.json").write_text(json.dumps(dict(job=job.to_dict(), material=vars(mat), verdict=v.to_dict(),
+                                                          schedule={k: x for k, x in sc.items() if k != "sweep"}), indent=1, default=str), encoding="utf-8")
+        sc["sweep"].to_csv(out / "cycle_time_sweep.csv", index=False)
+        print(f"wrote {out / 'assessment.md'}, verdict.json, cycle_time_sweep.csv")
+
+
+def cmd_init_job(args):
+    from .buildability import write_job_template
+    print(f"wrote {write_job_template(args.out or 'print_job.yaml')}")
+
+
+def cmd_agent(args):
+    from .agent.cli import main as agent_main
+    sys.exit(agent_main(args))
+
+
+def cmd_agent_mcp(args):
+    from .agent.mcp_server import main as mcp_main
+    mcp_main()
+
+
 def cmd_validate_design(args):
     from .design.validate import closed_loop
     cfg = _cfg(args)
@@ -292,6 +359,36 @@ def main(argv=None):
     a.add_argument("--port", type=int, default=8501)
     a.add_argument("--headless", action="store_true")
     a.set_defaults(func=cmd_ui)
+
+    a = sp.add_parser("buildability", help="print job (nozzle, geometry, schedule) x fresh material -> verdict, schedule window; --design finds the mix")
+    a.add_argument("--job", required=True, help="print job YAML/JSON (see: pmpredict init-job)")
+    a.add_argument("--mix", help="MixSpec JSON: fresh state predicted by pmpredict (static yield, Athix, viscosity)")
+    a.add_argument("--tau-s0", type=float, dest="tau_s0", help="measured static yield stress at deposition [Pa] (instead of --mix)")
+    a.add_argument("--athix", type=float, help="structuration rate [Pa/s]; default: calibrated ratio x tau_s0")
+    a.add_argument("--rho", type=float, default=2100.0, help="fresh density [kg/m3]")
+    a.add_argument("--design", action="store_true", help="inverse design: job -> required rheology -> candidate mixes with their schedules")
+    a.add_argument("--space", help="YAML with the search space (or a full design spec; its targets are added, e.g. compressive strength)")
+    a.add_argument("--analogues", type=int, default=8, help="closest published prints to list")
+    a.add_argument("--out", help="output directory")
+    a.add_argument("--json", action="store_true")
+    a.set_defaults(func=cmd_buildability)
+
+    a = sp.add_parser("init-job", help="write a print-job template YAML")
+    a.add_argument("--out")
+    a.set_defaults(func=cmd_init_job)
+
+    a = sp.add_parser("agent", help="LLM agent chat (REPL or one-shot) over the prediction / design / buildability / DB tools")
+    a.add_argument("--provider", choices=["auto", "anthropic", "openai", "claude_sdk", "codex", "fake"], default="auto")
+    a.add_argument("--model", help="model id override (e.g. claude-opus-5, gpt-5)")
+    a.add_argument("--session", help="session id to resume (see --list-sessions)")
+    a.add_argument("--list-sessions", action="store_true", dest="list_sessions")
+    a.add_argument("--check", action="store_true", help="show provider availability and exit")
+    a.add_argument("-p", "--prompt", help="one-shot prompt (no REPL)")
+    a.add_argument("--json", action="store_true", help="one-shot: print events as JSON lines")
+    a.set_defaults(func=cmd_agent)
+
+    a = sp.add_parser("agent-mcp", help="run the tool registry as a stdio MCP server (used by the Codex provider)")
+    a.set_defaults(func=cmd_agent_mcp)
 
     a = sp.add_parser("validate-design", help="closed-loop test of the inverse layer on held-out real mixes")
     a.add_argument("--n", type=int, default=50)

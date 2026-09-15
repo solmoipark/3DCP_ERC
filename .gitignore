@@ -32,3 +32,10 @@ data/master.db.part
 # run logs and stale cache copies
 artifacts/reports/_*.log
 data/raw_stale/
+
+# agent sessions / artifacts (may contain user data)
+artifacts/reports/agent/
+.pmpredict/
+
+# third-party slide decks / PDFs kept locally only (copyright)
+artifacts/reports/external/*.pdf

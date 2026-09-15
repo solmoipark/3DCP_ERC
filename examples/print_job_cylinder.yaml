@@ -1,0 +1,15 @@
+name: cylinder_300
+object_type: hollow_cylinder
+target_height_mm: 300
+footprint_mm: 250          # cylinder diameter -> path length = pi * D per layer
+wall_filaments: 1
+nozzle_d_mm: 20
+layer_height_mm: null      # 0.5 x nozzle (printable median)
+layer_width_mm: null       # 1.2 x nozzle
+print_speed_mm_s: 40
+layer_cycle_time_s: null   # path / speed + dwell
+dwell_s: 0
+start_time_after_mixing_min: 5
+open_time_min: 45
+safety_factor: 1.5
+check_buckling: true       # ignored for closed sections
